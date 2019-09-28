@@ -1,5 +1,6 @@
 import axios from "axios";
 
+console.log("----------------API (utils)------------------")
 export default {
   // Gets all books
   getBooks: function() {
@@ -16,5 +17,11 @@ export default {
   // Saves a book to the database
   saveBook: function(bookData) {
     return axios.post("/api/books", bookData);
+  },
+  createLogin: function(loginData) {
+    return axios.post("api/books/create", loginData);
+  },
+  checkLogin: function(loginData) {
+    return axios.post("api/books/login", loginData);
   }
 };
