@@ -1,17 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Books from "./pages/Books";
+import Charity from "./components/Charity";
+import "./App.css";
+
 
 function App() {
+  const [user, setUsers] = useState([
+    {
+      // example before database info kicks in
+      id: 0,
+      name: "Feeding America",
+      image: "http://seekvectorlogo.com/wp-content/uploads/2018/02/feeding-america-vector-logo.png",
+      description: "A nationwide network of more than 200 food banks and food rescue organizations. Feeding America is the nation's leading hunger-relief charity.",
+      website: "https://www.feedingamerica.org", 
+      liked: false
+    }, 
+  ]);
+
+  // add website routes 
+
+  const handleLikeClick = (id) => {
+    console.log('i need to make a database call', id)
+    //change liked flag with given id
+  }
+
   return (
     <Router>
-      <div>
-        <Switch>
-          <Route exact path="/" component={Books} />
-          <Route exact path="/books" component={Books} />
-        </Switch>
+      <div className="charityapp">
+        {user.map(user => (
+          <Charity
+            id={user.id}
+            handleLike={handleLikeClick}
+            liked={user.liked}
+            name={user.name}
+            image={user.image}
+            description={user.description}
+            website={user.website}
+          />
+        ))}
       </div>
-    </Router>
+       {/* { <div>
+         <Switch>
+           <Route exact path="/" component={Books} />
+           <Route exact path="/books" component={Books} />
+         </Switch>
+       </div>} */}
+     </Router>
   );
 }
 
