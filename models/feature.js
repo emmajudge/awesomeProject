@@ -8,11 +8,11 @@ const featureSchema = new Schema({
     },
     link: {
         type: String,
-        required: true
+        // required: true
     },
     description: {
         type: String,
-        required: true
+        // required: true
     },
     saved: {
         type: Boolean,

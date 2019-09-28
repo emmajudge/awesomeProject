@@ -12,4 +12,7 @@ router
     .route("/:id")
     .put(featureController.update);
 
+router.route("/scrape")
+    .get(featureController.scrape, featureController.findAll);
+
 module.exports = router;
