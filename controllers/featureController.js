@@ -30,6 +30,7 @@ module.exports = {
                 result.title = $(this)
                     // .children("div.post")
                     .children("h2.title")
+                    .children("a")
                     .text();
                 result.link = $(this)
                     .children("div.post")
