@@ -5,7 +5,8 @@ const loginSchema = new Schema({
     username: {type: String, required: true},
     password: {type: String, required: true},
     amountDonated: {type: Number},
-    favoriteCharities: []
+    favoriteCharities: [],
+    loggedIn: {type: Number}
 })
 
 const Login = mongoose.model("Login", loginSchema)

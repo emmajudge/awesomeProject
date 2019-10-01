@@ -1,12 +1,14 @@
 import React, {Component} from "react";
 import {Input, FormBtn} from "../components/Form";
 import { Container } from "../components/Grid";
-import API from "../utils/API"
+import API from "../utils/API";
+import {Link} from "react-router-dom";
 
 class Logins extends Component {
     state = {
         usernameRender: "",
-        passwordRender: ""
+        passwordRender: "",
+        test: ""
     }
 ////////////////////////////////////////////////////////////////////////////////////////
     createLogin = event => {
@@ -16,8 +18,17 @@ class Logins extends Component {
     }
     checkLogin = event => {
         event.preventDefault();
-        console.log(this.state);
+        // console.log(this.state);
         API.checkLogin({username: this.state.usernameRender, password: this.state.passwordRender});
+        // .then(console.log("Checked"));
+        // API.logInUser({username: this.state.username});
+        // console.log("Checked");
+    }
+    logUser = event => {
+        event.preventDefault();
+        console.log("In Event");
+        // console.log(window.location.href);
+        API.logInUser({username: this.state.usernameRender});
     }
     handleInputChange = event => {
         const {name, value} = event.target;
@@ -49,6 +60,8 @@ class Logins extends Component {
                         onClick = {this.checkLogin}
                     >Login</FormBtn>
                 </form>
+                <button className="amount" onClick={this.logUser}>Amount</button>
+                <Link to={"/books"}>Test</Link>
             </Container>
         )
     }
