@@ -6,11 +6,15 @@ const featureSchema = new Schema({
         type: String,
         required: true
     },
-    link: {
+    description: {
         type: String,
         // required: true
     },
-    description: {
+    image: {
+        type: String,
+        // required: true
+    },
+    link: {
         type: String,
         // required: true
     },
@@ -25,3 +29,4 @@ const featureSchema = new Schema({
 const Feature = mongoose.model("Feature", featureSchema);
 
 module.exports = Feature;
+

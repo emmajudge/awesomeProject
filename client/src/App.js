@@ -49,8 +49,8 @@ function App() {
         </div>
         {/* { <div>
          <Switch>
-           <Route exact path="/" component={Books} />
-           <Route exact path="/books" component={Books} />
+           <Route exact path="/donate" component={Donate} />
+           <Route exact path="/viewFeatured" component={FeaturedArticles} />
          </Switch>
        </div>} */}
       </Router>
