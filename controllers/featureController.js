@@ -17,7 +17,7 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     scrape: function (req, res) {
-        axios.get("https://www.gentlebarn.org/blog/").then(function (response) {
+        axios.get("https://www.gentlebarn.org/blog/").then(function(response) {
             // Then, we load that into cheerio and save it to $ for a shorthand selector
             var $ = cheerio.load(response.data);
 
@@ -28,27 +28,29 @@ module.exports = {
 
                 // Add the text and href of every link, and save them as properties of the result object
                 result.title = $(this)
-                    // .children("div.post")
                     .children("h2.title")
                     .children("a")
                     .text();
-                result.link = $(this)
-                    .children("div.post")
-                    .children("h2.title")
-                    .children("a")
-                    .attr("href")
                 result.description = $(this)
                     .children("div.entry")
+                    // .children("p")
+                    // .children("div.row")
+                    // .children("div.columns")
+                    // .children("p")
+                    // .children("img")
+                    .text()
+                result.image=$(this)
+                    .children("div.entry")
+                    .children("p")
                     .children("div.row")
                     .children("div.large-12 columns")
                     .children("p")
-                    .text()
-                // result.image=$(this)
-                //   .children("div.views-field-field-featured-image-external")
-                //   .children("a")
-                //   .children("a")
-                //   .children("img")
-                //   .attr("src")
+                    .children("img")
+                    .attr("src")
+                result.link = $(this)
+                    .children("h2.title")
+                    .children("a")
+                    .attr("href")
 
                 // Create a new Article using the `result` object built from scraping
                 db.Feature.create(result)

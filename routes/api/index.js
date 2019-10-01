@@ -10,10 +10,12 @@ router.use("/books", bookRoutes);
 // Featured organization scrape routes
 router.use("/features", featureRoutes);
 
-// Charity donation routes
-router.use("/users", userRoutes);
+// Donation routes - 
+// commented these out for now (until we have routes defined) bc it was causing errors
+// router.use("/users", userRoutes);
 
 // User routes
-router.use("/donations", donationRoutes);
+// commented these out for now (until we have routes defined) bc it was causing errors
+// router.use("/donations", donationRoutes);
 
 module.exports = router;
