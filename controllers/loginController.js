@@ -52,6 +52,9 @@ module.exports = {
         //     if (error) throw error;
         //     console.log(found.amountDonated);
         // })
+        db.Login.findOne({loggedIn: 1}, function (error, found){
+            console.log(found.amountDonated);
+        })
     },
     logInUser: function(request, response) {
         console.log(request.body.username);

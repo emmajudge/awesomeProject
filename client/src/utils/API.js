@@ -25,8 +25,8 @@ export default {
     return axios.post("api/books/login", loginData);
   },
   //New Code
-  getAmount: function(id) {
-    return axios.get("api/books/" + id);
+  getAmount: function() {
+    return axios.get("api/books/login");
   },
   logInUser: function(loginData) {
     return axios.put("api/books/login", loginData);

@@ -24,6 +24,10 @@ class Logins extends Component {
         // API.logInUser({username: this.state.username});
         // console.log("Checked");
     }
+    getAmount = event => {
+        event.preventDefault();
+        API.getAmount();
+    }
     logUser = event => {
         event.preventDefault();
         console.log("In Event");
@@ -60,7 +64,8 @@ class Logins extends Component {
                         onClick = {this.checkLogin}
                     >Login</FormBtn>
                 </form>
-                <button className="amount" onClick={this.logUser}>Amount</button>
+                {/* <button className="amount" onClick={this.logUser}>Amount</button> */}
+                <button className="amount" onClick={this.getAmount}>Amount</button>
                 <Link to={"/books"}>Test</Link>
             </Container>
         )
