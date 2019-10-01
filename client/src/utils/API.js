@@ -1,6 +1,7 @@
+// copied file from googleBookSearch homework as placeholder/template. still need to call the methods defined in featureController file once those are set
+
 import axios from "axios";
 
-console.log("----------------API (utils)------------------")
 export default {
   // Gets all books
   getBooks: function() {
