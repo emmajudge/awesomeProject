@@ -4,6 +4,8 @@ const loginController = require("../../controllers/loginController");
 
 router.route("/login")
   .post(loginController.createLogin)
+
+router.route("/create")
   .post(loginController.checkLogin);
   
 // Matches with "/api/books"

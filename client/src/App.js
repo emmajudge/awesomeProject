@@ -16,6 +16,7 @@ function App() {
           <Route exact path="/books" component={Books} />
           <Route exact path="/books/:id" component={Detail} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/create" componet={Login} />
           <Route component={NoMatch} />
         </Switch>
       </div>
