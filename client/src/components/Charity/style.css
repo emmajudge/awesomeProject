@@ -1,0 +1,21 @@
+.charityapp {
+  min-height: 100vh; 
+  background: lightblue;
+  display: flex; 
+  justify-content: space-around; 
+  align-items: center; 
+}
+
+.Charity {
+  background: white; 
+  height: 350px; 
+  width: 350px; 
+  border-radius: 30px; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-around; 
+  align-items: center; 
+  padding: 10px; 
+}
+
+
