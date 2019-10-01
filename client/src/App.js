@@ -5,6 +5,7 @@ import Header from "./components/Navbar/index";
 import Charity from "./components/Charity";
 import "./App.css";
 import { Jumbotron } from "react-bootstrap";
+import ImageSlides from "./components/Carousel";
 
 function App() {
   const [user, setUsers] = useState([
@@ -31,6 +32,7 @@ function App() {
   return (
     <div>
       <Header />
+      <ImageSlides />
       <Router>
         <div className="charityapp">
           {user.map(user => (
