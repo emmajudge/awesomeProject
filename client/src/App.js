@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-// import Books from "./pages/Books";
+import Donate from "./pages/Donate";
 import Header from "./components/Navbar/index";
 import Charity from "./components/Charity";
 import "./App.css";
@@ -47,12 +47,12 @@ function App() {
             />
           ))}
         </div>
-        {/* { <div>
+        { <div>
          <Switch>
-           <Route exact path="/" component={Books} />
-           <Route exact path="/books" component={Books} />
+           {/* <Route exact path="/" component={Books} /> */}
+           <Route exact path="/donate" component={Donate} />
          </Switch>
-       </div>} */}
+       </div>}
       </Router>
     </div>
   );
