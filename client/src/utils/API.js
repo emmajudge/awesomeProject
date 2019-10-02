@@ -34,5 +34,8 @@ export default {
   },
   viewAccount: function() {
     return axios.get("api/books/account");
+  },
+  getFeatures: function() {
+    return axios.get("/api/features");
   }
 };

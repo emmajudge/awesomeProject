@@ -14,9 +14,9 @@ function Header() {
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/donate">Donate</Nav.Link>
           <NavDropdown title="My Account" id="basic-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1">My Dashboard</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">My profile</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">Log Out</NavDropdown.Item>
+            <NavDropdown.Item href="/mydashboard">My Dashboard</NavDropdown.Item>
+            <NavDropdown.Item href="/myprofile">My profile</NavDropdown.Item>
+            <NavDropdown.Item href="/logout">Log Out</NavDropdown.Item>
           </NavDropdown>
         </Nav>
         <Form inline>

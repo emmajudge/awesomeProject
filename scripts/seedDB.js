@@ -123,9 +123,92 @@ const bookSeed = [
   }
 ];
 
-db.Book
+const donationSeed = [
+  {
+    name: "Feeding America",
+    image: "http://seekvectorlogo.com/wp-content/uploads/2018/02/feeding-america-vector-logo.png",
+    description:
+      "A United States-based nonprofit organization that is a nationwide network of more than 200 food banks that feed more than 46 million people through food pantries, soup kitchens, shelters, and other community-based agencies.",
+    link: "https://www.feedingamerica.org/",
+    donation: 0
+  },
+  {
+    name: "St. Jude Children’s Research Hospital",
+    image: "https://1ijylmozio83m2nkr2v293mp-wpengine.netdna-ssl.com/wp-content/uploads/2015/11/st-jude-childrens-hospital-logo.png",
+    description:
+      "Their mission is to advance cures and means of prevention, for pediatric catastrophic diseases through research and treatment. Consistent with the vision of our founder Danny Thomas, no child is denied treatment based on race, religion or a family’s ability to pay.",
+    link: "https://www.stjude.org/",
+    donation: 0
+  },
+  {
+    name: "Habitat for Humanity International",
+    image: "cecilia insert URL here!",
+    description:
+      "A nonprofit organization that helps families build and improve places to call home. We believe affordable housing plays a critical role in strong and stable communities.",
+    link: "https://www.habitat.org/",
+    donation: 0
+  },
+  {
+    name: "Nature Conservancy",
+    image: "https://www.greatlakesnow.org/wp-content/uploads/2017/01/logo-nature.png”",
+    description:
+      "Our mission is to conserve the land and waters on which all life depends. Our vision is a world where the diversity of life thrives, and people act to conserve nature for its own sake and its ability to fulfill our needs and enrich our lives.",
+    link: "https://www.nature.org/en-us/",
+    donation: 0
+  },
+  {
+    name: "Planned Parenthood Federation of America",
+    image: "https://healthhires.com/wp-content/sabai/File/files/l_f217386f67735efaa2057ef426e33336.png",
+    description:
+      "One of the nation’s leading providers of high-quality, affordable health care for women, men, and young people, and the nation’s largest provider of sex education. We offer quality health care, backed by medical experts and over 100 years of research in reproductive care.",
+    link: "https://www.plannedparenthood.org/",
+    donation: 0
+  },
+  {
+    name: "Feed the Children",
+    image: "https://volunteerrutherford.com/wp-content/sabai/File/files/l_82bac72aa055fdd23c63099f35f597a0.png",
+    description:
+      "We believe that we should create a world where no child goes to bed hungry.",
+    link: "http://www.feedthechildren.org/",
+    donation: 0
+  },
+  {
+    name: "Doctors Without Borders",
+    image: "https://denver-frederick.com/wp-content/uploads/2016/02/doctors-without-borders-logo-1.png",
+    description:
+      "An independent, global movement providing medical aid where it’s needed most.",
+    link: "https://www.doctorswithoutborders.org/",
+    donation: 0
+  },
+  {
+    name: "Make-A-Wish Foundation of America",
+    image: "http://www.romolagarai.org/imgs/full/119/1196800_make-a-wish-foundation-logo-png.png",
+    description:
+      "A vision to grant the wish of every child diagnosed with a critical illness.",
+    link: "https://wish.org/",
+    donation: 0
+  },
+  {
+    name: "American Kidney Fund",
+    image: "https://ml.globenewswire.com/Resource/Download/e9cb83a7-8c14-42dc-8527-d838abdf89ab?size=0",
+    description:
+      "Our mission is to help people fight kidney disease and live healthier lives.",
+    link: "http://www.kidneyfund.org/",
+    donation: 0
+  },
+  {
+    name: "World Wildlife Fund",
+    image: "https://www.pinclipart.com/maxpin/xoTobJ/",
+    description:
+      "Our mission is to conserve nature and reduce the most pressing threats to the diversity of life on Earth.",
+    link: "https://www.worldwildlife.org/",
+    donation: 0
+  },
+]
+
+db.Donation
   .remove({})
-  .then(() => db.Book.collection.insertMany(bookSeed))
+  .then(() => db.Donation.collection.insertMany(donationSeed))
   .then(data => {
     console.log(data.result.n + " records inserted!");
     process.exit(0);

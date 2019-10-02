@@ -54,6 +54,8 @@ module.exports = {
         // })
         db.Login.findOne({loggedIn: 1}, function (error, found){
             console.log(found.amountDonated);
+            // dbLogin => response.json(found);
+            console.log(found);
             // response.redirect("/");
         })
     },
@@ -64,7 +66,14 @@ module.exports = {
         // location.reload();
     },
     viewAccount: function(request, response) {
-        console.log(request);
-        db.Login.findOne({loggedIn: 1}, function(error, found){console.log(found.username)}).then(Login => response.json(Login));
+        // console.log(request);
+    //     db.Login.findOne({loggedIn: 1}, function(error, found){
+    //         if (error) throw error;
+    //         // console.log(found.username)
+    //         }).then(Login => found.json(Login));
+    db.Login
+        .findOne({loggedIn: 1})
+        // .then(dbLogin => response.json({username: "Steelflex"}))
+        , function (error, found) {console.log("New" + found)}
     }
 }

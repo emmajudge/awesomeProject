@@ -3,5 +3,5 @@ module.exports = {
   Login: require("./login"),
   Feature: require("./feature"),
   User: require("./user"),
-  Donation: require("./charity")
+  Donation: require("./donation")
 };

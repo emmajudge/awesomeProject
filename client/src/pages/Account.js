@@ -1,29 +1,44 @@
 import React, {Component} from "react";
-import {Input, FormBtn} from "../components/Form";
+import {Input, FormBtn, TextArea} from "../components/Form";
 import { Container } from "../components/Grid";
 import API from "../utils/API";
 import {Link, Redirect} from "react-router-dom";
 
 class Account extends Component {
     state = {
-        name: "",
-        amountDonated: 0
+        favoriteCharites: [],  
+        username: "Test",
+        password: "",
+        amountDonated: 0,
     }
     componentDidMount() {
 
-        this.viewAccount();
+        // this.viewAccount();
     }
-    viewAccount = () => {
+    viewAccount = event => {
+        event.preventDefault();
         console.log("viewAccount");
         API.viewAccount()
-        .then(response => this.setState({name: response.data.username}))
-        .catch(error => console.log(error));
+        .then(response => console.log(response));
+        // .then(response => this.setState({username: response.data}))
+        // // .then(found => console.log(found.data))
+        // .catch(error => console.log(error));
+        // this.setState({name: "Apple"});
+        // console.log(this.state.name);
     }
+    refresh = event => {
+        window.location.reload();
+    }
+    handleInputChange = event => {
+        const {name, value } = event.rarget;
+        this.setState({[name]: value});
+    };
     render() {
         return (
             <Container>
-                <p>{this.state.name}</p>
+                <p value= {this.state.username} onChange={this.handleInputChange}>Apple</p>
                 <button onClick={this.viewAccount}>View</button>
+                <button onClick={this.refresh}>Refresh</button>
             </Container>
         )
     }

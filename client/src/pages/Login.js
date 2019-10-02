@@ -28,7 +28,7 @@ class Login extends Component {
     }
     getAmount = event => {
         event.preventDefault();
-        API.getAmount();
+        API.getAmount().then(window.location.reload());
     }
     logUser = event => {
         event.preventDefault();

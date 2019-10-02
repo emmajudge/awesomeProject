@@ -11,7 +11,7 @@ function Charity({liked, handleLike, id, name, image, description, website}){
             <p>{image}</p>
             <p>{description}</p>
             <h3>{website}</h3>
-            <button>Donate Now</button>
+            <button id="donateNow">Donate Now</button>
         </div>
     ); 
 }
