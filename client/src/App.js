@@ -53,7 +53,7 @@ function App() {
          <Switch>
            {/* <Route exact path="/" component={Books} /> */}
            <Route exact path="/donate" component={Donate} />
-           <Route exact path="/viewfeatured" component={FeaturedArticles} />
+           <Route exact path="/viewFeatured" component={FeaturedArticles} />
          </Switch>
        </div>}
       </Router>

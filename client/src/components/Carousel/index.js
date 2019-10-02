@@ -1,6 +1,7 @@
 import React from "react";
 import "./style.css";
 import { Carousel } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 function ImageSlides() {
     return (
@@ -8,11 +9,11 @@ function ImageSlides() {
             <Carousel.Item>
                 <img
                     className="d-block w-100"
-                    src="/images/handsHeart.jpg"
+                    src="/images/gentlebarn.jpg"
                     alt="First slide"
                 />
                 <Carousel.Caption>
-                    <h3>Let's...</h3>
+                  <a href="/donate"><h3>GENTLE BARN</h3></a>  
                 </Carousel.Caption>
             </Carousel.Item>
 
@@ -23,7 +24,7 @@ function ImageSlides() {
                     alt="Second slide"
                 />
                 <Carousel.Caption>
-                    <h3>Make a change...</h3>
+                    <h3>NAME OF THE FEATURED CHARITY 2</h3>
                 </Carousel.Caption>
             </Carousel.Item>
 
@@ -34,7 +35,7 @@ function ImageSlides() {
                     alt="Third slide"
                 />
                 <Carousel.Caption>
-                    <h3>together!</h3>
+                    <h3>NAME OF THE FEATURED CHARITY 3</h3>
                 </Carousel.Caption>
             </Carousel.Item>
         </Carousel>
