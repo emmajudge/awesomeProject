@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-// import Books from "./pages/Books";
+import Donate from "./pages/Donate";
+import FeaturedArticles from "./pages/FeaturedArticles";
 import Header from "./components/Navbar/index";
 import Charity from "./components/Charity";
 import "./App.css";
@@ -47,12 +48,12 @@ function App() {
             />
           ))}
         </div>
-        {/* { <div>
+        { <div>
          <Switch>
            <Route exact path="/donate" component={Donate} />
            <Route exact path="/viewFeatured" component={FeaturedArticles} />
          </Switch>
-       </div>} */}
+       </div>}
       </Router>
     </div>
   );

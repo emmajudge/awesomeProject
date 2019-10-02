@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import API from "../utils/API";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import DropdownButton from "react-bootstrap/DropdownButton";
+import Dropdown from "react-bootstrap/Dropdown";
 import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from "../components/List";
+// import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 //import all other relevant react components once built
 
@@ -63,17 +64,17 @@ class Donate extends Component {
                         <h1>Donate Now!</h1>
 
                         <form>
-                            <DropdownButton id="charitySelect" title="Select Charity" value={this.state.charity}>
-                                <DropdownButton.Item href="#/path-1">Feeding America</DropdownButton.Item>
-                                <DropdownButton.Item href="#/path-1">St. Jude Children’s Research Hospital</DropdownButton.Item>
-                                <DropdownButton.Item href="#/path-1">Nature Conservancy</DropdownButton.Item>
-                                <DropdownButton.Item href="#/path-1">Planned Parenthood</DropdownButton.Item>
-                                <DropdownButton.Item href="#/path-1">Feed the Children</DropdownButton.Item>
-                                <DropdownButton.Item href="#/path-1">Gentle Barn</DropdownButton.Item>
-                                <DropdownButton.Item href="#/path-1">Doctors Without Borders</DropdownButton.Item>
-                                <DropdownButton.Item href="#/path-1">Make-A-Wish Foundation of America</DropdownButton.Item>
-                                <DropdownButton.Item href="#/path-1">American Kidney Fund</DropdownButton.Item>
-                                <DropdownButton.Item href="#/path-1">World Wildlife Fund</DropdownButton.Item>
+                            <DropdownButton id="charitySelect" title="Select Charity">
+                                <Dropdown.Item value="Feeding America">Feeding America</Dropdown.Item>
+                                <Dropdown.Item value="St. Jude Children’s Research Hospital">St. Jude Children’s Research Hospital</Dropdown.Item>
+                                <Dropdown.Item value="Nature Conservancy">Nature Conservancy</Dropdown.Item>
+                                <Dropdown.Item value="Planned Parenthood">Planned Parenthood</Dropdown.Item>
+                                <Dropdown.Item value="Feed the Children">Feed the Children</Dropdown.Item>
+                                <Dropdown.Item value="Gentle Barn">Gentle Barn</Dropdown.Item>
+                                <Dropdown.Item value="Doctors Without Borders">Doctors Without Borders</Dropdown.Item>
+                                <Dropdown.Item value="Make-A-Wish Foundation of America">Make-A-Wish Foundation of America</Dropdown.Item>
+                                <Dropdown.Item value="American Kidney Fund">American Kidney Fund</Dropdown.Item>
+                                <Dropdown.Item value="World Wildlife Fund">World Wildlife Fund</Dropdown.Item>
                             </DropdownButton>
 
                             <Input
