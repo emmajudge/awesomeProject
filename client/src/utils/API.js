@@ -31,5 +31,8 @@ export default {
   },
   logInUser: function(loginData) {
     return axios.put("api/books/login", loginData);
+  },
+  viewAccount: function() {
+    return axios.get("api/books/account");
   }
 };

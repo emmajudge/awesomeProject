@@ -2,9 +2,10 @@ import React, {Component} from "react";
 import {Input, FormBtn} from "../components/Form";
 import { Container } from "../components/Grid";
 import API from "../utils/API";
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
+import { link } from "fs";
 
-class Logins extends Component {
+class Login extends Component {
     state = {
         usernameRender: "",
         passwordRender: "",
@@ -20,6 +21,7 @@ class Logins extends Component {
         event.preventDefault();
         // console.log(this.state);
         API.checkLogin({username: this.state.usernameRender, password: this.state.passwordRender});
+        window.location.reload();
         // .then(console.log("Checked"));
         // API.logInUser({username: this.state.username});
         // console.log("Checked");
@@ -72,4 +74,4 @@ class Logins extends Component {
     }
 }
 
-export default Logins;
+export default Login;

@@ -5,21 +5,24 @@ import Header from "./components/Navbar/index";
 import Charity from "./components/Charity";
 import "./App.css";
 import { Jumbotron } from "react-bootstrap";
+import { domainToUnicode } from "url";
+import Logins from "./pages/Login";
+import Account from "./pages/Account";
 
 function App() {
-  const [user, setUsers] = useState([
-    {
-      // example before database info kicks in
-      id: 0,
-      name: "Feeding America",
-      image:
-        "http://seekvectorlogo.com/wp-content/uploads/2018/02/feeding-america-vector-logo.png",
-      description:
-        "A nationwide network of more than 200 food banks and food rescue organizations. Feeding America is the nation's leading hunger-relief charity.",
-      website: "https://www.feedingamerica.org",
-      liked: false
-    }
-  ]);
+  // const [user, setUsers] = useState([
+  //   {
+  //     // example before database info kicks in
+  //     id: 0,
+  //     name: "Feeding America",
+  //     image:
+  //       "http://seekvectorlogo.com/wp-content/uploads/2018/02/feeding-america-vector-logo.png",
+  //     description:
+  //       "A nationwide network of more than 200 food banks and food rescue organizations. Feeding America is the nation's leading hunger-relief charity.",
+  //     website: "https://www.feedingamerica.org",
+  //     liked: false
+  //   }
+  // ]);
 
   // add website routes
 
@@ -32,7 +35,7 @@ function App() {
     <div>
       <Header />
       <Router>
-        <div className="charityapp">
+        {/* <div className="charityapp">
           {user.map(user => (
             <Charity
               id={user.id}
@@ -44,13 +47,18 @@ function App() {
               website={user.website}
             />
           ))}
-        </div>
+        </div> */}
         {/* { <div>
          <Switch>
            <Route exact path="/" component={Books} />
            <Route exact path="/books" component={Books} />
          </Switch>
        </div>} */}
+                <Switch>
+           <Route exact path="/" component={Charity} />
+           <Route exact path="/books" component={Logins} />
+           <Route exact path="/account" component={Account} />
+         </Switch>
       </Router>
     </div>
   );

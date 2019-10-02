@@ -54,11 +54,17 @@ module.exports = {
         // })
         db.Login.findOne({loggedIn: 1}, function (error, found){
             console.log(found.amountDonated);
+            // response.redirect("/");
         })
     },
     logInUser: function(request, response) {
         console.log(request.body.username);
-        db.Login.findOneAndUpdate({username: request.body.username}, {$set: {loggedIn: 0}}).then(Login => response.json(Login))
+        db.Login.findOneAndUpdate({username: request.body.username}, {$set: {loggedIn: 0}}).then(Login => response.json(Login));
         // db.Login.findOneAndUpdate({username: request.body.username}, {$set: {loggedIn: 0}})
+        // location.reload();
+    },
+    viewAccount: function(request, response) {
+        console.log(request);
+        db.Login.findOne({loggedIn: 1}, function(error, found){console.log(found.username)}).then(Login => response.json(Login));
     }
 }
