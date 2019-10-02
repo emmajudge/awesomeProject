@@ -1,27 +1,20 @@
-import React from 'react';
+  
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import prettyBytes from 'pretty-bytes';
+import prettyMoney from "pretty-money";
 import Counter from 'react-animated-number';
 import CurrencyFormat from 'react-currency-format';
 
-const getRandomInt = (min, max) => (Math.floor(Math.random() * (max - min + 1)) + min);
-
-//Currency Formatter
-// const formatter = new Intl.NumberFormat('en-US', {
-//     style: 'currency',
-//     currency: 'USD',
-//     minimumFractionDigits: 2
-//   })
-  
-//   formatter.format(1000) // "$1,000.00"
-//   formatter.format(10) // "$10.00"
-//   formatter.format(123233000) // "$123,233,000.00"
-
-var CurrencyFormat = require('react-currency-format');
-<CurrencyFormat value={2456981} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+ const getRandomInt = (min, max) => (Math.floor(Math.random() * (max - min + 1)) + min);
+ const prettyDollarConfig = {
+    currency: "$",
+    position: "before",
+    spaced: false,
+    thousandsDelimiter: ","
+}
 
 
-class App extends Component {
+class  UpdateFunds extends Component {
 
     static displayName = 'Counter'
 
@@ -63,7 +56,9 @@ class App extends Component {
 
         return (
             <div style={{marginTop: 50}}>
-                <h4>
+
+<CurrencyFormat value={2456981} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+                <h4>  
                     <Counter
                         style={{
                             transition: '1.0s ease-out',
@@ -82,8 +77,8 @@ class App extends Component {
                     <div>
                         {'Total Donations Made:'}
                     </div>
-                    <svg width={1000} height={1000}>
-                        <g transform="rotate(-15 150 150) translate(50,100)">
+                    <svg width={600} height={600}>
+                        <g transform="rotate(0 150 150) translate(50,100)">
                             <Counter
                                 style={{
                                     transition: '1.0s ease-out',
@@ -97,7 +92,7 @@ class App extends Component {
                                 duration={330}
                                 value={bigValue}
                                 component="text"
-                                formatValue={n => prettyBytes(n)}/>
+                                formatValue={n =>  prettyMoney(prettyDollarConfig, n)}/>
                         </g>
                     </svg>
                 </div>
@@ -107,4 +102,4 @@ class App extends Component {
 }
 
 // ReactDOM.render(<App />, document.getElementById('appRoot'));
-export default Counter;
+export default UpdateFunds ;
