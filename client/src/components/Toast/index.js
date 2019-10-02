@@ -26,8 +26,8 @@ function Notification() {
         </Col>
       </Row>
     );
-  }
+}
   
-  render(<Notification />);
+render(<Notification />);
 
-  export default Notification;
+export default Notification;

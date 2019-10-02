@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Donate from "./pages/Donate";
+import FeaturedArticles from "./pages/FeaturedArticles";
 import Header from "./components/Navbar/index";
 import Charity from "./components/Charity";
 import "./App.css";
@@ -33,6 +34,7 @@ function App() {
     <div>
       <Header />
       <ImageSlides />
+      <Counter />
       <Router>
         <div className="charityapp">
           {user.map(user => (
@@ -51,6 +53,7 @@ function App() {
          <Switch>
            {/* <Route exact path="/" component={Books} /> */}
            <Route exact path="/donate" component={Donate} />
+           <Route exact path="/viewfeatured" component={FeaturedArticles} />
          </Switch>
        </div>}
       </Router>
