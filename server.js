@@ -19,6 +19,7 @@ app.use(routes);
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/awesomeProject");
 
 // "mongodb://test:password1@ds023714.mlab.com:23714/heroku_d20xtg1f"
+// "mongodb://localhost/awesomeProject"
 
 // Start the API server
 app.listen(PORT, function() {
