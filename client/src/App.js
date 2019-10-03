@@ -6,7 +6,8 @@ import Header from "./components/Navbar/index";
 import Charity from "./components/Charity";
 import "./App.css";
 import { Jumbotron } from "react-bootstrap";
-import UpdateFunds from "./components/Counter";
+// import UpdateFunds from "./components/Counter";
+import UpdateFundsJumbotron from "./components/Counter";
 import ImageSlides from "./components/Carousel";
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
     <div>
       <Header />
       <ImageSlides />
-      <UpdateFunds />
+      <UpdateFundsJumbotron />
       <Router>
         <div className="charityapp">
           {user.map(user => (
