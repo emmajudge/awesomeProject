@@ -40,8 +40,6 @@ class UpdateFunds extends Component {
     super();
 
     this.state = {
-      // smallValue: 10,
-      // bigValue: 1000,
       updates: 0,
       newDonation: 50,
       totalDonations: 1000
@@ -76,7 +74,6 @@ class UpdateFunds extends Component {
     const { totalDonations, newDonation } = this.state;
 
     return (
-      // Leaves 40px margin at the top
       <div>
         <h4>
           <Counter
@@ -95,7 +92,7 @@ class UpdateFunds extends Component {
 
         <div>
           <div style={{ marginTop: 0 }}>{"Total Donations Made:" }</div>
-          <svg width={"60%"} height={"70"}>
+          <svg width={"40%"} height={"70"}>
             <g transform="rotate(0 150 150) translate(80,50)">
               <Counter
                 style={{
