@@ -15,7 +15,7 @@ function ImageSlides() {
         />
         <Carousel.Caption>
           <ButtonToolbar>
-            <Button href="/donate" variant="warning">LEARN MORE</Button>
+            <Button href="/viewFeatured" variant="warning">LEARN MORE</Button>
           </ButtonToolbar>
         </Carousel.Caption>
       </Carousel.Item>
@@ -40,7 +40,7 @@ function ImageSlides() {
         <Carousel.Caption>
           <h3></h3>
           <ButtonToolbar>
-          <Button variant="warning">Who is Lolli?</Button>
+          <Button href="https://www.gentlebarn.org/happy-1st-birthday-lolli" variant="warning">Who is Lolli?</Button>
           </ButtonToolbar>
         </Carousel.Caption>
       </Carousel.Item>
