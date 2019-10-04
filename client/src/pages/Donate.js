@@ -1,12 +1,77 @@
 import React, { Component } from "react";
-import API from "../utils/API";
+import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
+import ModalHeader from "react-bootstrap/ModalHeader";
+//import Modal from "react-bootstrap/Modal";
+//import Modal from "react-bootstrap/Modal";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
+import { Formik, Field } from "formik";
+import * as yup from "yup";
+
+// import API from "../utils/API";
 // import { Link } from "react-router-dom";
-import DropdownButton from "react-bootstrap/DropdownButton";
-import Dropdown from "react-bootstrap/Dropdown";
-import { Col, Row, Container } from "../components/Grid";
-// import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
-//import all other relevant react components once built
+
+// let yup = require('yup');
+
+const creditCardSchema = yup.object({
+    ccn1: yup
+        .array()
+        .min(4)
+        .of(yup.number().min(0)),
+    ccn2: yup
+        .array()
+        .min(4)
+        .of(yup.number().min(0)),
+    ccn3: yup
+        .array()
+        .min(4)
+        .of(yup.number().min(0)),
+    ccn4: yup
+        .array()
+        .min(4)
+        .of(yup.number().min(0))
+});
+
+const billingInfoSchema = yup.object().shape({
+    charityName: yup.string(),
+    fullName: yup.string()
+        .min(2, 'Too Short!')
+        .max(70, 'Too Long!')
+        .required("name is a required field"),
+    email: yup.string()
+        .email("invalid email")
+        .required("email is a required field"),
+    address: yup.string()
+        .min(2, 'Too Short!')
+        .max(70, 'Too Long!')
+        .required("address is a required field"),
+    address2: yup
+        .string(),
+    city: yup.string()
+        .min(2, 'Too Short!')
+        .max(70, 'Too Long!')
+        .required("city is a required field"),
+    state: yup.string()
+        .min(2, 'Too Short!')
+        .max(70, 'Too Long!')
+        .required("state is a required field"),
+    zip: yup.string()
+        .min(5, 'Too Short!')
+        .required("zip is a required field"),
+    populate: yup.bool(),
+});
+
+// await creditCardSchema.isValid({
+//     ccn1: [2, 3, 5, 0],
+//     ccn2: [2, 3, 5, 0],
+//     ccn3: [2, 3, 5, 0],
+//     ccn4: [2, 3, 5, 0]
+// }); 
+
+// https://react-bootstrap.github.io/components/modal/#modal-body-props
 
 class Donate extends Component {
     state = {
@@ -20,91 +85,210 @@ class Donate extends Component {
         cardNumber: 0
     };
 
-    // call necessary functions to load page data and event handling
-    handleFormSubmit = event => {
-        event.preventDefault();
-        if (this.state.title && this.state.authors) {
-          API.saveBook({
-            title: this.state.title,
-            authors: this.state.authors,
-            description: this.state.description,
-            image: this.state.image,
-            link: this.state.link
-          })
-            .then(res => this.loadBooks())
-            .catch(err => console.log(err));
-        }
-    };
-
-    handleInputChange = event => {
-        const { name, value } = event.target;
-        this.setState({
-          [name]: value
-        });
-    };
-    
-    validateCardNumber = event => {
-        event.preventDefault();
-        var cardNumber = this('#cardNumber').val();
-        //Test the length, and use a regex to test 
-        //that there are 16 numbers
-        if (cardNumber.length < 16 || !/[0-9]{16}/.test(cardNumber)) {
-            //Invalid credit card number do error code here
-            prompt("Invalid credit card number. Please try again.")
-        } else {
-            // handleInputChange();
-        }
-    }
-
     render() {
+        //  const DonationForm = ({ donation, logDonation }) => {
         return (
             <Container fluid>
                 <Row>
-                    <Col size="md-6">
+                    <Col md="8">
                         <h1>Donate Now!</h1>
+                        <Formik
+                            validationSchema={billingInfoSchema}
+                            // initialValues={donation/{
+                            initialValues={{
+                                charityName: "",
+                                fullName: "",
+                                email: "",
+                                address: "",
+                                address2: "",
+                                city: "",
+                                state: "",
+                                zip: ""
+                            }}
+                            onSubmit={console.log}
+                        // https://dev.to/finallynero/comment/7fne
+                        // https://jaredpalmer.com/formik/docs/guides/form-submission#submission 
+                        // onSubmit={(values,actions) =>{
+                        //     dbCall(donation.id, values).then(
+                        //         newDonation => {
+                        //             actions.setSubmitting(false);
+                        //             logDonation(newDonation);
+                        //           },
+                        //           error => {
+                        //             actions.setSubmitting(false);
+                        //             actions.setErrors(transformMyRestApiErrorsToAnObject(error));
+                        //             actions.setStatus({ msg: 'Set some arbitrary status or data' });
+                        //           }
+                        //     );
+                        // }}
+                        >
+                            {({
+                                handleSubmit,
+                                handleChange,
+                                handleBlur,
+                                values,
+                                touched,
+                                isValid,
+                                errors
+                            }) => (
+                                    <Form noValidate onSubmit={handleSubmit}>
+                                        <Form.Group controlId="charityName">
+                                            <Field name="charityName" component="select" placeholder="Select Organization">
+                                                <option>Select Organization</option>
+                                                <option value="Gentle Barn">Gentle Barn</option>
+                                                <option value="American Kidney Fund">American Kidney Fund</option>
+                                                <option value="Doctors Without Borders">Doctors Without Borders</option>
+                                                <option value="Feeding America">Feeding America</option>
+                                                <option value="Feed the Children">Feed the Children</option>
+                                                <option value="Make-A-Wish Foundation of America">Make-A-Wish Foundation of America</option>
+                                                <option value="Nature Conservancy">Nature Conservancy</option>
+                                                <option value="Planned Parenthood">Planned Parenthood</option>
+                                                <option value="St. Jude Children’s Research Hospital">St. Jude Children’s Research Hospital</option>
+                                                <option value="World Wildlife Fund">World Wildlife Fund</option>
+                                            </Field>
+                                        </Form.Group>
+                                        <Form.Row>
+                                            <Form.Group as={Col} controlId="validationFormik01">
+                                                <Form.Label>Full Name (as it appears on your credit card)</Form.Label>
+                                                <Form.Control
+                                                    type="text"
+                                                    placeholder="First Last"
+                                                    name="fullName"
+                                                    value={values.fullName}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                    isValid={touched.fullName && !errors.fullName}
+                                                    isInvalid={!!errors.fullName}
+                                                />
+                                                <Form.Control.Feedback type="valid">{isValid}</Form.Control.Feedback>
+                                                <Form.Control.Feedback type="invalid">
+                                                    {errors.fullName}
+                                                </Form.Control.Feedback>
+                                            </Form.Group>
 
-                        <form>
-                            <DropdownButton id="charitySelect" title="Select Charity">
-                                <Dropdown.Item value="Feeding America">Feeding America</Dropdown.Item>
-                                <Dropdown.Item value="St. Jude Children’s Research Hospital">St. Jude Children’s Research Hospital</Dropdown.Item>
-                                <Dropdown.Item value="Nature Conservancy">Nature Conservancy</Dropdown.Item>
-                                <Dropdown.Item value="Planned Parenthood">Planned Parenthood</Dropdown.Item>
-                                <Dropdown.Item value="Feed the Children">Feed the Children</Dropdown.Item>
-                                <Dropdown.Item value="Gentle Barn">Gentle Barn</Dropdown.Item>
-                                <Dropdown.Item value="Doctors Without Borders">Doctors Without Borders</Dropdown.Item>
-                                <Dropdown.Item value="Make-A-Wish Foundation of America">Make-A-Wish Foundation of America</Dropdown.Item>
-                                <Dropdown.Item value="American Kidney Fund">American Kidney Fund</Dropdown.Item>
-                                <Dropdown.Item value="World Wildlife Fund">World Wildlife Fund</Dropdown.Item>
-                            </DropdownButton>
+                                            <Form.Group as={Col} controlId="validationFormik02">
+                                                <Form.Label>Email</Form.Label>
+                                                <Form.Control
+                                                    type="text"
+                                                    placeholder="Enter email"
+                                                    name="email"
+                                                    value={values.email}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                    isValid={touched.email && !errors.email}
+                                                    isInvalid={!!errors.email}
+                                                />
+                                                <Form.Control.Feedback type="valid">{isValid}</Form.Control.Feedback>
+                                                <Form.Control.Feedback type="invalid">
+                                                    {errors.email}
+                                                </Form.Control.Feedback>
+                                            </Form.Group>
+                                        </Form.Row>
 
-                            <Input
-                                value={this.state.cardNumber}
-                                onChange={this.validateCardNumber}
-                                name="cardNumber"
-                                id="cardNumber"
-                                maxlength="16"
-                                placeholder="Card Number"
-                            />
+                                        <Form.Group controlId="validationFormik03">
+                                            <Form.Label>Address</Form.Label>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="1234 Main St"
+                                                name="address"
+                                                value={values.address}
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                                isValid={touched.address && !errors.address}
+                                                isInvalid={!!errors.address}
+                                            />
+                                            <Form.Control.Feedback type="valid">{isValid}</Form.Control.Feedback>
+                                            <Form.Control.Feedback type="invalid">
+                                                {errors.address}
+                                            </Form.Control.Feedback>
+                                        </Form.Group>
 
-                            <Input
-                                value={this.state.authors}
-                                onChange={this.handleInputChange}
-                                name="authors"
-                                placeholder="Author (required)"
-                            />
+                                        <Form.Group controlId="validationFormik04">
+                                            <Form.Label>Address 2</Form.Label>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="Apartment, studio, or floor"
+                                                name="address2"
+                                                value={values.address2}
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                                isValid={touched.address2 && !errors.address2}
+                                                isInvalid={!!errors.address2}
+                                            />
+                                            <Form.Control.Feedback type="invalid">
+                                                {errors.address2}
+                                            </Form.Control.Feedback>
+                                        </Form.Group>
 
-                            <FormBtn
-                                disabled={!(this.state.authors && this.state.title)}
-                                onClick={this.handleFormSubmit}
-                            >
-                                Submit Payment
-              </FormBtn>
-                        </form>
+                                        <Form.Row>
+                                            <Form.Group as={Col} controlId="validationFormik05">
+                                                <Form.Label>City</Form.Label>
+                                                <Form.Control
+                                                    type="text"
+                                                    placeholder="City"
+                                                    name="city"
+                                                    value={values.city}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                    isValid={touched.city && !errors.city}
+                                                    isInvalid={!!errors.city}
+                                                />
+                                                <Form.Control.Feedback type="valid">{isValid}</Form.Control.Feedback>
+                                                <Form.Control.Feedback type="invalid">
+                                                    {errors.city}
+                                                </Form.Control.Feedback>
+                                            </Form.Group>
+
+                                            <Form.Group as={Col} controlId="validationFormik06">
+                                                <Form.Label>State</Form.Label>
+                                                <Form.Control
+                                                    type="text"
+                                                    placeholder="State"
+                                                    name="state"
+                                                    value={values.state}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                    isValid={touched.state && !errors.state}
+                                                    isInvalid={!!errors.state}
+                                                />
+                                                <Form.Control.Feedback type="valid">{isValid}</Form.Control.Feedback>
+                                                <Form.Control.Feedback type="invalid">
+                                                    {errors.state}
+                                                </Form.Control.Feedback>
+                                            </Form.Group>
+                                            <Form.Group as={Col} controlId="validationFormik07">
+                                                <Form.Label>Zip</Form.Label>
+                                                <Form.Control
+                                                    type="text"
+                                                    placeholder="Zip"
+                                                    name="zip"
+                                                    value={values.zip}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                    isValid={touched.zip && !errors.zip}
+                                                    isInvalid={!!errors.zip}
+                                                />
+                                                <Form.Control.Feedback type="valid">{isValid}</Form.Control.Feedback>
+                                                <Form.Control.Feedback type="invalid">
+                                                    {errors.zip}
+                                                </Form.Control.Feedback>
+                                            </Form.Group>
+                                        </Form.Row>
+
+                                        <Form.Group id="formGridCheckbox">
+                                            <Form.Check type="checkbox" disabled label="Populate billing information from profile" />
+                                        </Form.Group>
+
+                                        <Button type="submit">Proceed</Button>
+                                    </Form>
+                                )}
+                        </Formik>
                     </Col>
                 </Row>
-            </Container>
+            </Container >
         );
     }
+    // }
 };
 
 export default Donate;
