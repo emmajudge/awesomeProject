@@ -19,6 +19,22 @@ export default {
   saveBook: function(bookData) {
     return axios.post("/api/books", bookData);
   },
+  createLogin: function(loginData) {
+    return axios.post("api/books/create", loginData);
+  },
+  checkLogin: function(loginData) {
+    return axios.post("api/books/login", loginData);
+  },
+  //New Code
+  getUser: function() {
+    return axios.get("api/books/login");
+  },
+  logoutUser: function(loginData) {
+    return axios.put("api/books/login", loginData);
+  },
+  viewAccount: function() {
+    return axios.get("api/books/account");
+  },
   getFeatures: function() {
     return axios.get("/api/features");
   }

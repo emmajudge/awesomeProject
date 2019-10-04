@@ -12,19 +12,19 @@ import ImageSlides from "./components/Carousel";
 import UpdateFundsJumbotron from "./components/Counter";
 
 function App() {
-  const [user, setUsers] = useState([
-    {
-      // example before database info kicks in
-      id: 0,
-      name: "Feeding America",
-      image:
-        "http://seekvectorlogo.com/wp-content/uploads/2018/02/feeding-america-vector-logo.png",
-      description:
-        "A nationwide network of more than 200 food banks and food rescue organizations. Feeding America is the nation's leading hunger-relief charity.",
-      website: "https://www.feedingamerica.org",
-      liked: false
-    }
-  ]);
+  // const [user, setUsers] = useState([
+  //   {
+  //     // example before database info kicks in
+  //     id: 0,
+  //     name: "Feeding America",
+  //     image:
+  //       "http://seekvectorlogo.com/wp-content/uploads/2018/02/feeding-america-vector-logo.png",
+  //     description:
+  //       "A nationwide network of more than 200 food banks and food rescue organizations. Feeding America is the nation's leading hunger-relief charity.",
+  //     website: "https://www.feedingamerica.org",
+  //     liked: false
+  //   }
+  // ]);
 
   // add website routes
 
@@ -39,7 +39,7 @@ function App() {
         <Header />
         <ImageSlides />
         <UpdateFundsJumbotron />
-        <Card className="charityapp">
+        {/* <Card className="charityapp">
           {user.map(user => (
             <Charity
               id={user.id}
@@ -51,7 +51,7 @@ function App() {
               website={user.website}
             />
           ))}
-        </Card>
+        </Card> */}
         <Switch>
           <Route exact path="/donate" component={Donate} />
           <Route exact path="/viewFeatured" component={FeaturedArticles} />

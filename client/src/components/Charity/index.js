@@ -2,6 +2,7 @@ import React from "react";
 import "./style.css"; 
 
 function Charity({liked, handleLike, id, name, image, description, website}){
+    
     return(
         <div className= "charityapp">
             <h5 onClick={() => handleLike(id)}>{liked ? 'site is liked' : 'site is not liked'}</h5>
