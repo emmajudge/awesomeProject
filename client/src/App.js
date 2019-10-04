@@ -39,7 +39,7 @@ function App() {
         <Header />
         <ImageSlides />
         <UpdateFundsJumbotron />
-        <Card className="charityapp">
+        {/* <Card className="charityapp">
           {user.map(user => (
             <Charity
               id={user.id}
@@ -51,7 +51,7 @@ function App() {
               website={user.website}
             />
           ))}
-        </Card>
+        </Card> */}
         <Switch>
           <Route exact path="/donate" component={Donate} />
           <Route exact path="/viewFeatured" component={FeaturedArticles} />
