@@ -50,6 +50,10 @@ class FeaturedArticles extends Component {
             <Container fluid>
                 <Row>
                     <Col size="sm-12">
+                        <Jumbotron>
+                            <h1>The Gentle Barn</h1>
+                            <h2>October's Featured Charity</h2>
+                        </Jumbotron>
                         {/* <Jumbotron> */}
                         <h1>The Gentle Barn</h1>
                         <h2>October's Featured Charity</h2>
