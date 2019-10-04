@@ -2,45 +2,44 @@ import React, {Component} from "react";
 import {Input, FormBtn} from "../components/Form";
 import { Container } from "../components/Grid";
 import API from "../utils/API";
-import {Link, Redirect} from "react-router-dom";
-import { link } from "fs";
+import {Link} from "react-router-dom";
 
 class Login extends Component {
     state = {
         usernameRender: "",
-        passwordRender: "",
-        test: ""
+        passwordRender: ""
     }
-////////////////////////////////////////////////////////////////////////////////////////
+
     createLogin = event => {
         event.preventDefault();
         console.log(this.state);
-        API.createLogin({username: this.state.usernameRender, password: this.state.passwordRender});
+        API.createLogin({username: this.state.usernameRender, password: this.state.passwordRender})
+        .then(response => alert(response.data));
+        // window.location.href("/");
+        
     }
-    checkLogin = event => {
-        event.preventDefault();
-        // console.log(this.state);
-        API.checkLogin({username: this.state.usernameRender, password: this.state.passwordRender});
-        window.location.reload();
-        // .then(console.log("Checked"));
-        // API.logInUser({username: this.state.username});
-        // console.log("Checked");
-    }
-    getAmount = event => {
-        event.preventDefault();
-        API.getAmount().then(window.location.reload());
-    }
+    //Save For Create Page
+    // checkLogin = event => {
+    //     event.preventDefault();
+    //     console.log("Check Login Event)");
+    //     API.checkLogin({username: this.state.usernameRender, password: this.state.passwordRender});
+    //     window.location.reload();
+    // }
+    // getAmount = event => {
+    //     event.preventDefault();
+    //     API.getAmount().then(window.location.reload());
+    // }
     logUser = event => {
         event.preventDefault();
-        console.log("In Event");
-        // console.log(window.location.href);
-        API.logInUser({username: this.state.usernameRender});
+        API.logoutUser({username: this.state.usernameRender});
+        window.location.assign("/");
     }
     handleInputChange = event => {
         const {name, value} = event.target;
         this.setState({ [name]: value   });
     }
-///////////////////////////////////////////////////////////////////////////////////////
+
+    
     render() {
         return (
             <Container fluid>
@@ -61,14 +60,14 @@ class Login extends Component {
                     />
                     <FormBtn
                         onClick = {this.createLogin}
-                    >Sign Up</FormBtn>
-                    <FormBtn
-                        onClick = {this.checkLogin}
                     >Login</FormBtn>
+                    {/* <FormBtn
+                        onClick = {this.checkLogin}
+                    >Sign Up</FormBtn> */}
                 </form>
                 {/* <button className="amount" onClick={this.logUser}>Amount</button> */}
-                <button className="amount" onClick={this.getAmount}>Amount</button>
-                <Link to={"/books"}>Test</Link>
+                {/* <button className="amount" onClick={this.getAmount}>Amount</button> */}
+                {/* <Link to={"/books"}>Test</Link> */}
             </Container>
         )
     }

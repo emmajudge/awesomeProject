@@ -7,8 +7,9 @@ import Charity from "./components/Charity";
 import "./App.css";
 import { Jumbotron } from "react-bootstrap";
 import { domainToUnicode } from "url";
-import Logins from "./pages/Login";
+import Login from "./pages/Login";
 import Account from "./pages/Account";
+import Create from "./pages/Create";
 import ImageSlides from "./components/Carousel";
 
 function App() {
@@ -36,7 +37,7 @@ function App() {
   return (
     <div>
       <Header />
-      <ImageSlides />
+      {/* <ImageSlides /> */}
       <Router>
         {/* <div className="charityapp">
           {user.map(user => (
@@ -50,27 +51,19 @@ function App() {
               website={user.website}
             />
           ))}
-<<<<<<< HEAD
         </div> */}
         {/* { <div>
-=======
-        </div>
-        { <div>
->>>>>>> master
          <Switch>
            <Route exact path="/donate" component={Donate} />
            <Route exact path="/viewFeatured" component={FeaturedArticles} />
          </Switch>
-<<<<<<< HEAD
        </div>} */}
                 <Switch>
            <Route exact path="/" component={Charity} />
-           <Route exact path="/books" component={Logins} />
-           <Route exact path="/account" component={Account} />
+           <Route exact path="/login" component={Login} />
+           <Route exact path="/create" component={Create} />
+           <Route exact path="/mydashboard" component={Account} />
          </Switch>
-=======
-       </div>}
->>>>>>> master
       </Router>
     </div>
   );

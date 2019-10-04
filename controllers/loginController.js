@@ -1,79 +1,108 @@
+//Dependencies
 const db = require("../models");
 const bcryptjs = require("bcryptjs");
-const monogoose = require("mongoose");
 
 module.exports = {
+
+    //Function To Try And Log In The User
     checkLogin: function(request, response) {
-        console.log(request.params.id);
+
+        console.log("Logging In...");
+        //Searches The Database For The Requested Username
         db.Login.findOne({username: request.body.username}, function(error, found)
-        // find({username: request.body.username}).limit(1).next(function(error, doc)
         {
             if (error) throw error;
-            if(found.password){
-            bcryptjs.compare(request.body.password, found.password, function(error, check)
-            {
-                if (check)
-                    // response = "Success";
-                    // console.log("Success");
+
+            //If A Password Is Found, It Means That Someone Is Logged in
+            if(found.password != null){
+
+                //If A Username & Password Is Found, Compares The Password
+                bcryptjs.compare(request.body.password, found.password, function(error, check)
+                {
+                    //If Correct, Changes The Login Status
+                    if (check)
                     {
-                    console.log("Success");
-                    db.Login.findOneAndUpdate({username: request.body.username}, {$set: {loggedIn: 1}}).then(Login => response.json(Login))
-                    // console.log(found.loggedIn);
-                    // db.Login.findOneAndUpdate({username: request.body.username}, {$set: {loggedIn: 1}});
-                    // db.Login.updateOne({username: found.username}, [{loggedIn: 1}])
-                    // console.log(found.loggedIn);
+                        db.Login.findOneAndUpdate({username: request.body.username}, {$set: {loggedIn: true}}).then(Login => response.json(Login));
+                        response.send("Logging In...");
                     }
-                else
-                    console.log("Wrong");
+                    else
+                        response.send("Incorrect Password");
+                })
+            }
+        })
+    },
+    //End Of checkLogin Function
+
+    //Function To Create A New User
+    createLogin: function (request, response) {
+        
+        //Setting The New Variables
+        var newFirstName = request.body.firstName;
+        // console.log("Creating User");
+        // var newFirstName = "Alex";
+        var newUsername = request.body.username;
+        if (request.body.password1 != request.body.password2)
+            response.send("Passwords Are Not The Same");
+        var newPassword = request.body.password1;
+
+        //Hashes The Password Before Putting It In The Database
+        bcryptjs.genSalt(10, function(error, salt)
+        {
+            if (error) throw error;
+            bcryptjs.hash(newPassword, salt, function(error, hash)
+            {
+                //Adds The New User To The Database
+                db.Login.create({username: newUsername, password: hash, firstName: newFirstName, amountDonated: 0, favoriteCharites: [], loggedIn: false})
+                .then(response.send("Created"));
+                
             })
-        }
+        })
+    },
+    //End Of createLogin function
+    
+    //Function To Get The User's Information
+    getUser: function (request, response) {
+
+        //Searches For A User That's Logged In
+        db.Login.findOne({loggedIn: 1}, function (error, found){
+            
+            //If No One Is Logged In, Sends Them To The Login Page
+            if (error) 
+                response.render("/login");
+            else
+                response.send(found);
         })
 
-    },
-    // createLogin: function (request, response) {
-    createLogin: function (request, response) {
-                var newUsername = request.body.username;
-                var newPassword = request.body.password;
-                
-                bcryptjs.genSalt(10, function(error, salt)
-                {
-                    bcryptjs.hash(newPassword, salt, function(error, hash)
-                    {
-                        db.Login.create({username: newUsername, password: hash, amountDonated: 0, favoriteCharites: [], loggedIn: false});
-                    })
-                })
-    },
-    //New Code
-    getAmount: function (request, response) {
-        // console.log(request.params.id);
-        // db.Login.findOne({_id: request.params.id}, function(error, found)
-        // db.Login.findOne({username: request.params.id}, function(error, found)
+        //For Getting The Total
+        ////////////////////////////////////////////////////////////////////
+        // let total = 0;
+        // db.Login.find({}, function(error, docs)
         // {
-        //     if (error) throw error;
-        //     console.log(found.amountDonated);
+        //     for (let i = 0; i < docs.length; i++)
+        //     {
+        //         total += docs[i].amountDonated;
+        //     }
+        //     console.log(total);
         // })
-        db.Login.findOne({loggedIn: 1}, function (error, found){
-            console.log(found.amountDonated);
-            // dbLogin => response.json(found);
-            console.log(found);
-            // response.redirect("/");
-        })
     },
-    logInUser: function(request, response) {
+    //End Of getAmount Function
+
+    //Sets The Logged In User's Status To False
+    logoutUser: function(request, response) {
         console.log(request.body.username);
-        db.Login.findOneAndUpdate({username: request.body.username}, {$set: {loggedIn: 0}}).then(Login => response.json(Login));
-        // db.Login.findOneAndUpdate({username: request.body.username}, {$set: {loggedIn: 0}})
-        // location.reload();
+        db.Login.findOneAndUpdate({username: request.body.username}, {$set: {loggedIn: false}}).then(Login => response.json(Login));
     },
+    //End Of logoutUser Function
+
     viewAccount: function(request, response) {
         // console.log(request);
     //     db.Login.findOne({loggedIn: 1}, function(error, found){
     //         if (error) throw error;
     //         // console.log(found.username)
     //         }).then(Login => found.json(Login));
-    db.Login
-        .findOne({loggedIn: 1})
-        // .then(dbLogin => response.json({username: "Steelflex"}))
-        , function (error, found) {console.log("New" + found)}
+    // db.Login
+    //     .findOne({loggedIn: 1})
+    //     // .then(dbLogin => response.json({username: "Steelflex"}))
+    //     , function (error, found) {console.log("New" + found)}
     }
 }

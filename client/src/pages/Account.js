@@ -3,28 +3,20 @@ import {Input, FormBtn, TextArea} from "../components/Form";
 import { Container } from "../components/Grid";
 import API from "../utils/API";
 import {Link, Redirect} from "react-router-dom";
-
+var test = "";
 class Account extends Component {
     state = {
-        favoriteCharites: [],  
-        username: "Test",
+        favoriteCharities: [],  
+        username: "",
         password: "",
-        amountDonated: 0,
+        amountDonated: 0
     }
     componentDidMount() {
-
-        // this.viewAccount();
+        this.viewAccount();
     }
     viewAccount = event => {
-        event.preventDefault();
-        console.log("viewAccount");
         API.viewAccount()
-        .then(response => console.log(response));
-        // .then(response => this.setState({username: response.data}))
-        // // .then(found => console.log(found.data))
-        // .catch(error => console.log(error));
-        // this.setState({name: "Apple"});
-        // console.log(this.state.name);
+        .then(response => this.setState({username: response.data.username, amountDonated: response.data.amountDonated, favoriteCharities: response.data.favoriteCharities}))
     }
     refresh = event => {
         window.location.reload();
@@ -36,8 +28,10 @@ class Account extends Component {
     render() {
         return (
             <Container>
-                <p value= {this.state.username} onChange={this.handleInputChange}>Apple</p>
-                <button onClick={this.viewAccount}>View</button>
+                <h1 value= {this.state.username} onChange={this.handleInputChange}>{this.state.username}</h1>
+                <h3 value={this.state.amountDonated} onChange={this.handleInputChange}>Amount Donated: $ {this.state.amountDonated}</h3>
+                <div><h1>{this.state.favoriteCharities.map((item, index) => (<span className="test" key={index}>{item} </span>))}</h1></div>
+                {/* <h3 onChange={this.handleInputChange}>{this.state.favoriteCharities[0]}</h3> */}
                 <button onClick={this.refresh}>Refresh</button>
             </Container>
         )

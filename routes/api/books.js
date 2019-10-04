@@ -4,13 +4,13 @@ const loginController = require("../../controllers/loginController");
 
 router.route("/login")
   .post(loginController.createLogin)
-  .put(loginController.logInUser)
+  .put(loginController.logoutUser)
 
 router.route("/create")
   .post(loginController.checkLogin);
 
 router.route("/:id")
-  .get(loginController.getAmount)
+  .get(loginController.getUser)
   
 // Matches with "/api/books"
 router.route("/")
