@@ -5,13 +5,23 @@ import prettyMoney from "pretty-money";
 import Counter from "react-animated-number";
 
 const getRandomInt = (min, max) =>
-  Math.floor(Math.random() * (800000 - 10 + 1)) + min;
-const prettyDollarConfig = {
+  Math.floor(Math.random() * (2000 - 10 + 1)) + min;
+const prettyDollarConfigTotal = {
   currency: "$",
   position: "before",
   spaced: false,
-  thousandsDelimiter: ","
+  thousandsDelimiter: ",",
+  maxDecimal: 2,
+  decimals: 'fixed'
 };
+
+const prettyDollarConfigNew = {
+  currency: "$",
+  position: "before",
+  spaced: false,
+  thousandsDelimiter: ",",
+};
+
 
 function UpdateFundsJumbotron(props) {
   return (
@@ -30,9 +40,11 @@ class UpdateFunds extends Component {
     super();
 
     this.state = {
-      smallValue: 10,
-      bigValue: 1000,
-      updates: 0
+      // smallValue: 10,
+      // bigValue: 1000,
+      updates: 0,
+      newDonation: 50,
+      totalDonations: 1000
     };
   }
 
@@ -42,11 +54,12 @@ class UpdateFunds extends Component {
   }
 
   update() {
-    const { updates } = this.state;
+    const { newDonation, totalDonations , updates} = this.state;
 
     this.setState({
-      smallValue: getRandomInt(5, 1000),
-      bigValue: getRandomInt(100, 5000),
+      newDonation: getRandomInt(5, 1000),
+      totalDonations: totalDonations+newDonation,
+      // bigValue: getRandomInt(100, 5000),
       updates: updates + 1
     });
   }
@@ -60,7 +73,7 @@ class UpdateFunds extends Component {
   }
 
   render() {
-    const { smallValue, bigValue } = this.state;
+    const { totalDonations, newDonation } = this.state;
 
     return (
       // Leaves 40px margin at the top
@@ -75,13 +88,13 @@ class UpdateFunds extends Component {
               perc === 100 ? {} : { backgroundColor: "yellow" }
             }
             stepPrecision={0}
-            value={smallValue}
-            formatValue={n => `Woohoo! Just got another $${n}` + " donated!"}
+            value={newDonation}
+            formatValue={n => `Woohoo! Just got another ${prettyMoney(prettyDollarConfigNew, n)}` + " donated!"}
           />
         </h4>
 
         <div>
-          <div style={{ marginTop: 0 }}>{"Total Donations Made:"}</div>
+          <div style={{ marginTop: 0 }}>{"Total Donations Made:" }</div>
           <svg width={"60%"} height={"70"}>
             <g transform="rotate(0 150 150) translate(80,50)">
               <Counter
@@ -94,9 +107,9 @@ class UpdateFunds extends Component {
                 }}
                 frameStyle={perc => (perc === 100 ? {} : { opacity: 0.5 })}
                 duration={700}
-                value={bigValue}
+                value={totalDonations}
                 component="text"
-                formatValue={n => prettyMoney(prettyDollarConfig, n)}
+                formatValue={n => prettyMoney(prettyDollarConfigTotal, n)}
               />
             </g>
           </svg>

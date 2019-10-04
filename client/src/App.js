@@ -9,6 +9,7 @@ import Charity from "./components/Charity";
 import "./App.css";
 import { Jumbotron, Card } from "react-bootstrap";
 import ImageSlides from "./components/Carousel";
+import UpdateFundsJumbotron from "./components/Counter";
 
 function App() {
   const [user, setUsers] = useState([
@@ -37,6 +38,7 @@ function App() {
       <div>
         <Header />
         <ImageSlides />
+        <UpdateFundsJumbotron />
         <Card className="charityapp">
           {user.map(user => (
             <Charity
