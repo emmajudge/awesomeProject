@@ -1,16 +1,15 @@
+// import React from "react";
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Donate from "./pages/Donate";
 import FeaturedArticles from "./pages/FeaturedArticles";
+import Books from "./pages/Books";
 import Header from "./components/Navbar/index";
 import Charity from "./components/Charity";
 import "./App.css";
-import { Jumbotron } from "react-bootstrap";
-import { domainToUnicode } from "url";
-import Login from "./pages/Login";
-import Account from "./pages/Account";
-import Create from "./pages/Create";
+import { Jumbotron, Card } from "react-bootstrap";
 import ImageSlides from "./components/Carousel";
+import UpdateFundsJumbotron from "./components/Counter";
 
 function App() {
   // const [user, setUsers] = useState([
@@ -31,15 +30,16 @@ function App() {
 
   const handleLikeClick = id => {
     console.log("i need to make a database call", id);
-    //change liked flag with given id
+    //   change liked flag with given id
   };
 
   return (
-    <div>
-      <Header />
-      {/* <ImageSlides /> */}
-      <Router>
-        {/* <div className="charityapp">
+    <Router>
+      <div>
+        <Header />
+        <ImageSlides />
+        <UpdateFundsJumbotron />
+        <Card className="charityapp">
           {user.map(user => (
             <Charity
               id={user.id}
@@ -51,21 +51,14 @@ function App() {
               website={user.website}
             />
           ))}
-        </div> */}
-        {/* { <div>
-         <Switch>
-           <Route exact path="/donate" component={Donate} />
-           <Route exact path="/viewFeatured" component={FeaturedArticles} />
-         </Switch>
-       </div>} */}
-                <Switch>
-           <Route exact path="/" component={Charity} />
-           <Route exact path="/login" component={Login} />
-           <Route exact path="/create" component={Create} />
-           <Route exact path="/mydashboard" component={Account} />
-         </Switch>
-      </Router>
-    </div>
+        </Card>
+        <Switch>
+          <Route exact path="/donate" component={Donate} />
+          <Route exact path="/viewFeatured" component={FeaturedArticles} />
+          <Route exact path="/books" component={Books} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

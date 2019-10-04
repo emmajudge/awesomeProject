@@ -12,7 +12,7 @@ function Header() {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           <Nav.Link href="/">Home</Nav.Link>
-          <Nav.Link href="/donate">Donate</Nav.Link>
+          <Nav.Link href="/donate">Donate<i class="fas fa-donate"></i></Nav.Link>
           <NavDropdown title="My Account" id="basic-nav-dropdown">
             <NavDropdown.Item href="/mydashboard">My Dashboard</NavDropdown.Item>
             <NavDropdown.Item href="/myprofile">My profile</NavDropdown.Item>

@@ -4,7 +4,8 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
+import { ArticleList, ArticleItem } from "../components/ArticleList";
+
 
 class FeaturedArticles extends Component {
     state = {
@@ -27,6 +28,23 @@ class FeaturedArticles extends Component {
             .catch(err => console.log(err));
     };
 
+    //     <Col size="sm-12">
+    //     <h1>Articles and Blog Posts from The Gentle Barn</h1>
+    //     {this.state.features.length ? (
+    //         <List>
+    //             {this.state.features.map(article => (
+    //                 <ListItem key={article._id}>
+    //                     <strong>{article.title}</strong>
+    //                     {article.image} + {article.description}
+    //                     <Link to={article.link}>Read more...</Link>
+    //                 </ListItem>
+    //             ))}
+    //         </List>
+    //     ) : (
+    //             <h3>No Results to Display</h3>
+    //         )}
+    // </Col>
+
     render() {
         return (
             <Container fluid>
@@ -36,28 +54,35 @@ class FeaturedArticles extends Component {
                             <h1>The Gentle Barn</h1>
                             <h2>October's Featured Charity</h2>
                         </Jumbotron>
+                        {/* <Jumbotron> */}
+                        <h1>The Gentle Barn</h1>
+                        <h2>October's Featured Charity</h2>
+                        {/* </Jumbotron> */}
                     </Col>
                 </Row>
                 <Row>
                     <Col size="sm-12">
-                    <h1>Articles and Blog Posts from The Gentle Barn</h1>
-                    {this.state.features.length ? (
-                        <List>
-                            {this.state.features.map(article => (
-                                <ListItem key={article._id}>
-                                    <strong>{article.title}</strong>
-                                     {article.image}  {article.description}     
-                                    <Link to={article.link}>Read more...</Link>
-                                </ListItem>
-                            ))}
-                        </List>
-                    ) : (
+                        {!this.state.features.length ? (
                             <h3>No Results to Display</h3>
-                        )}
-                </Col>
-        </Row>
-      </Container >
-    );
+                        ) : (
+                                <ArticleList>
+                                    <h1>Articles and Blog Posts</h1>
+                                    {this.state.features.map(article => {
+                                        return (
+                                            <ArticleItem
+                                                image={article.image}
+                                                title={article.title}
+                                                description={article.description}
+                                                link={article.link}
+                                            />
+                                        );
+                                    })}
+                                </ArticleList>
+                            )}
+                    </Col>
+                </Row>
+            </Container >
+        );
     }
 }
 
