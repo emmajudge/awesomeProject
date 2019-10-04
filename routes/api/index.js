@@ -6,7 +6,7 @@ const donationRoutes=require("./donations")
 
 // Book routes
 router.use("/books", bookRoutes);
-
+router.use('/donation', donationRoutes );
 // Featured organization scrape routes
 router.use("/features", featureRoutes);
 

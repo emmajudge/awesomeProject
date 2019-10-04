@@ -19,11 +19,3 @@
       monospace;
   }
   
-  button {
-    background-color: lightblue;  
-    font-size: 40px;
-    width: 200px;
-    color: white; 
-    border-radius: 12px; 
-    border: 2px solid darkblue;
-  }
