@@ -7,7 +7,11 @@ import Header from "./components/Navbar/index";
 import Charity from "./pages/Charity";
 import "./App.css";
 import { Jumbotron, Card } from "react-bootstrap";
+import Create from "./pages/Create";
+import Account from "./pages/Account";
+import Login from "./pages/Login";
 import ImageSlides from "./components/Carousel";
+import UpdateFundsJumbotron from "./components/Counter";
 
 
 function App() {
@@ -15,13 +19,16 @@ function App() {
     <Router>
       <div>
         <Header />
-        <ImageSlides />
         <Switch>
           <Route exact path="/donate" component={Donate} />
           <Route exact path="/viewFeatured" component={FeaturedArticles} />
-          <Route exact path="/books" component={Books} />
-          <Route exact path="/" component={Charity} />
+          <Route exact path="/create" component={Create} />
+          <Route exact path="/mydashboard" component={Account} />
+          <Route exact path="/login" component={Login} />
         </Switch>
+        <ImageSlides />
+        <UpdateFundsJumbotron />
+        <Charity/>
       </div>
     </Router>
   );

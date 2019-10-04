@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import Jumbotron from "../components/Jumbotron";
+import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
@@ -50,6 +50,10 @@ class FeaturedArticles extends Component {
             <Container fluid>
                 <Row>
                     <Col size="sm-12">
+                        <Jumbotron>
+                            <h1>The Gentle Barn</h1>
+                            <h2>October's Featured Charity</h2>
+                        </Jumbotron>
                         {/* <Jumbotron> */}
                         <h1>The Gentle Barn</h1>
                         <h2>October's Featured Charity</h2>

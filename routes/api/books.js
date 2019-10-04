@@ -1,6 +1,17 @@
 const router = require("express").Router();
 const booksController = require("../../controllers/booksController");
+const loginController = require("../../controllers/loginController");
 
+router.route("/login")
+  .post(loginController.createLogin)
+  .put(loginController.logoutUser)
+
+router.route("/create")
+  .post(loginController.checkLogin);
+
+router.route("/:id")
+  .get(loginController.getUser)
+  
 // Matches with "/api/books"
 router.route("/")
   .get(booksController.findAll)

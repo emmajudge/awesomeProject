@@ -6,7 +6,6 @@ import ImageSlides from "../components/Carousel/index";
 import "../components/Charity/style.css"
 
 
-
 class Charity extends Component {
     state = {
        charities: []
