@@ -6,7 +6,7 @@ const donationSchema = new Schema({
     image: { type: String, required: true },
     description: { type: String, required: true },
     link: { type: String, required: true },
-    donation: []
+    donation: { type: Number, required: true }
 });
 
 const Donation = mongoose.model("Donation", donationSchema);

@@ -30,8 +30,8 @@ export function ArticleItem({
             <h3>{title}</h3>
             <p>{description}</p>
             <a rel="noreferrer noopener" target="_blank" href={link}>
-              Continue reading!
-            </a>
+              Read the full story!
+            </a><div class="box"><iframe src={link} width = "500px" height = "500px"></iframe></div>
           </Col>
         </Row>
       </Container>

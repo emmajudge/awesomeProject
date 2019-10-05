@@ -86,35 +86,35 @@ const paymentSchema = yup.object().shape({
 class Donate extends Component {
     state = {
         donation: [],
-        charityName: "",
-        fullName: "",
-        email: "",
-        donationAmount: "",
-        cardNumber: "",
-        cvc: "",
-        address: "",
-        address2: "",
-        city: "",
-        state: "",
-        zip: ""
+        // charityName: "",
+        // fullName: "",
+        // email: "",
+        // donationAmount: "",
+        // cardNumber: "",
+        // cvc: "",
+        // address: "",
+        // address2: "",
+        // city: "",
+        // state: "",
+        // zip: ""
     };
 
     componentDidMount() {
         fetch("/api/donation")
             .then(res => res.json())
-            .then(res => this.setState = ({
-                donation: res.data,
-                charityName: "",
-                fullName: "",
-                email: "",
-                donationAmount: "",
-                cardNumber: "",
-                cvc: "",
-                address: "",
-                address2: "",
-                city: "",
-                state: "",
-                zip: ""
+            .then(donationAmount => this.setState = ({
+                donation: donationAmount,
+                // charityName: "",
+                // fullName: "",
+                // email: "",
+                // donationAmount: "",
+                // cardNumber: "",
+                // cvc: "",
+                // address: "",
+                // address2: "",
+                // city: "",
+                // state: "",
+                // zip: ""
             })
             )
     }
@@ -396,7 +396,7 @@ class Donate extends Component {
                                             <Form.Check type="checkbox" disabled label="Populate billing information from profile" />
                                         </Form.Group>
                                         {status && status.msg && <div>{status.msg}</div>}
-                                        <Button type="submit" disabled={isSubmitting} onClick={values.pushFormVals}>Proceed</Button>
+                                        <Button type="submit" disabled={isSubmitting} value={values.donationAmount} onClick={this.logDonation}>Proceed</Button>
                                     </Form>
                                 )}
                         </Formik>
