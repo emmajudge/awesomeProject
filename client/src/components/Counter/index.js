@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { Jumbotron, Container } from "react-bootstrap";
 import prettyMoney from "pretty-money";
 import Counter from "react-animated-number";
+import "./style.css"
 
 const getRandomInt = (min, max) =>
   Math.floor(Math.random() * (2000 - 10 + 1)) + min;
@@ -25,7 +26,7 @@ const prettyDollarConfigNew = {
 
 function UpdateFundsJumbotron(props) {
   return (
-        <Jumbotron fluid style={{margin: "0", padding: "1em", textAlign: "center"}}>
+        <Jumbotron fluid style={{margin: "0", padding: "1em", textAlign: "center", fontWeight: "bold", backgroundImage: "url(/images/grasses.jpg)", backgroundSize: "100% 100%"}}>
             <Container>
                 <UpdateFunds />
             </Container>
@@ -93,7 +94,7 @@ class UpdateFunds extends Component {
           />
         </h4>
 
-        <div>
+        <div id="totalDisplay">
           <div style={{ marginTop: 0 }}>{"Total Donations Made:" }</div>
           <svg width={"60%"} height={"70"}>
             <g transform="rotate(0 150 150) translate(80,50)">

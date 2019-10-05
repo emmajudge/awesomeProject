@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {Input, FormBtn} from "../components/Form";
 import { Container } from "../components/Grid";
+import "../components/Login/style.css";
 import API from "../utils/API";
 
 class Login extends Component {
@@ -23,7 +24,7 @@ class Login extends Component {
     
     render() {
         return (
-            <Container fluid>
+            <Container fluid className="loginPage">
                 <form>
                     <Input
                         value = {this.state.usernameRender}

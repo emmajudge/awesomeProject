@@ -6,7 +6,7 @@ import { Carousel, ButtonToolbar, Button } from "react-bootstrap";
 function ImageSlides() {
   return (
     // Set carousel slide time interval to 5 seconds each
-    <Carousel interval={6000}>
+    <Carousel interval={4000}>
       <Carousel.Item>
         <img
           className="d-block w-100"
@@ -48,7 +48,18 @@ function ImageSlides() {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="/images/gb_newsImage.jpg"
+          src="/images/makeAChange.jpg"
+          alt="slide_4"
+        />
+        <Carousel.Caption>
+          <h3>...</h3>
+        </Carousel.Caption>
+      </Carousel.Item>
+
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src="/images/kidsPeaceSigns.jpg"
           alt="slide_4"
         />
         <Carousel.Caption>

@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const booksController = require("../../controllers/booksController");
 const loginController = require("../../controllers/loginController");
+const donationController = require("../../controllers/donationController");
 
 router.route("/login")
   .post(loginController.createLogin)
@@ -14,6 +15,13 @@ router.route("/:id")
   
 router.route("/add")
   .put(loginController.addFavorite);
+
+router.route("/donate")
+  .put(donationController.addDonation);
+
+router.route("/userDonate")
+  .put(donationController.addDonateUser);
+  
 // Matches with "/api/books"
 router.route("/")
   .get(booksController.findAll)

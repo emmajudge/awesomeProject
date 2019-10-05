@@ -8,9 +8,9 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import API from "../utils/API";
 import { Formik, Field } from "formik";
 import * as yup from "yup";
-import API from "../utils/API";
 
 // import API from "../utils/API";
 // import { Link } from "react-router-dom";
@@ -85,59 +85,38 @@ const paymentSchema = yup.object().shape({
 
 class Donate extends Component {
     state = {
-        donation: [],
-        // charityName: "",
-        // fullName: "",
-        // email: "",
-        // donationAmount: "",
-        // cardNumber: "",
-        // cvc: "",
-        // address: "",
-        // address2: "",
-        // city: "",
-        // state: "",
-        // zip: ""
+        // userID: "",
+        // donations: [{
+        //     charity: "",
+        //     amount: 0
+        // }],
+        // charity: "",
+        // amount: 0,
+        // cardNumber: 0
+        username: "",
+        name: "",
+        donation: 0
     };
 
-    componentDidMount() {
-        fetch("/api/donation")
-            .then(res => res.json())
-            .then(donationAmount => this.setState = ({
-                donation: donationAmount,
-                // charityName: "",
-                // fullName: "",
-                // email: "",
-                // donationAmount: "",
-                // cardNumber: "",
-                // cvc: "",
-                // address: "",
-                // address2: "",
-                // city: "",
-                // state: "",
-                // zip: ""
-            })
-            )
-    }
+    //New Code
+////////////////////////////////////////////////////////////////////////////
+addDonation = event => {
+    event.preventDefault();
+    console.log(event.target);
+    // console.log(event.target.dataset.charityname);
+    // console.log(event.target.dataset.fullname);
+    // console.log(event.target.dataset.zip);
+    API.addDonation({name: event.target.dataset.charityname, username: event.target.dataset.fullname, donation: event.target.dataset.donationamount})
+    .then(API.addDonateUser({amountDonated: event.target.dataset.donationamount}))
+    .then(alert("Thank you for donating!"))
+    .then(window.location.reload());
+}
 
-
-    pushFormVals = event => {
-        event.preventDefault();
-            API.logDonation({
-                charityName: this.state.charityName,
-                fullName: this.state.fullName,
-                email: this.state.email,
-                donationAmount: this.state.donationAmount,
-                cardNumber: this.state.cardNumber,
-                cvc: this.state.cvc,
-                address: this.state.address,
-                address2: this.state.address2,
-                city: this.state.city,
-                state: this.state.state,
-                zip: this.state.zip
-            })
-                .then(response => console.log(response.data))
-                .catch(err => console.log(err))
-    };
+handleInputChange = event => {
+    const {name, value} = event.target;
+    this.setState({ [name]: value});
+}
+////////////////////////////////////////////////////////////////////////////
 
     render() {
         //   const DonationForm = ({ donation, pushFormVals }) => {
@@ -381,6 +360,8 @@ class Donate extends Component {
                                                     name="zip"
                                                     value={values.zip}
                                                     onChange={handleChange}
+                                                    // value = {this.state.donation}
+                                                    // onChange = {this.handleInputChange}
                                                     onBlur={handleBlur}
                                                     isValid={touched.zip && !errors.zip}
                                                     isInvalid={touched.zip && !!errors.zip}
@@ -395,8 +376,8 @@ class Donate extends Component {
                                         <Form.Group id="formGridCheckbox">
                                             <Form.Check type="checkbox" disabled label="Populate billing information from profile" />
                                         </Form.Group>
-                                        {status && status.msg && <div>{status.msg}</div>}
-                                        <Button type="submit" disabled={isSubmitting} value={values.donationAmount} onClick={this.logDonation}>Proceed</Button>
+
+                                        <Button type="submit" data-donationamount={values.donationAmount} data-fullname={values.fullName} data-charityname={values.charityName} onClick={this.addDonation}>Proceed</Button>
                                     </Form>
                                 )}
                         </Formik>

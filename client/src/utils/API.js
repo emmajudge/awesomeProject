@@ -40,6 +40,12 @@ export default {
   },
   getFeatures: function() {
     return axios.get("/api/features");
+  },
+  addDonation: function(donationData) {
+    return axios.put("api/books/donate", donationData);
+  },
+  addDonateUser: function(donationData) {
+    return axios.put("api/books/userDonate", donationData);
   }, 
   logDonation: function(donationData) {
     return axios.put("api/donation/pushNew", donationData);
