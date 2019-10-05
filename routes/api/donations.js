@@ -5,4 +5,8 @@ const donationController = require("../../controllers/donationController");
 router.route("/")
   .get(donationController.findAll)
 
+// Matches with "/api/donation/pushNew"
+router.route("/pushNew")
+  .put(donationController.update)
+
 module.exports = router;
