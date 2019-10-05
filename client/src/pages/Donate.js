@@ -8,6 +8,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import API from "../utils/API";
 import { Formik, Field } from "formik";
 import * as yup from "yup";
 
@@ -75,15 +76,38 @@ const billingInfoSchema = yup.object().shape({
 
 class Donate extends Component {
     state = {
-        userID: "",
-        donations: [{
-            charity: "",
-            amount: 0
-        }],
-        charity: "",
-        amount: 0,
-        cardNumber: 0
+        // userID: "",
+        // donations: [{
+        //     charity: "",
+        //     amount: 0
+        // }],
+        // charity: "",
+        // amount: 0,
+        // cardNumber: 0
+        username: "",
+        name: "",
+        donation: 0
     };
+
+    //New Code
+////////////////////////////////////////////////////////////////////////////
+addDonation = event => {
+    event.preventDefault();
+    console.log(event.target);
+    // console.log(event.target.dataset.charityname);
+    // console.log(event.target.dataset.fullname);
+    // console.log(event.target.dataset.zip);
+    API.addDonation({name: event.target.dataset.charityname, username: event.target.dataset.fullname, donation: event.target.dataset.zip})
+    .then(API.addDonateUser({amountDonated: event.target.dataset.zip}))
+    .then(alert("Thank you for donating!"))
+    .then(window.location.reload());
+}
+
+handleInputChange = event => {
+    const {name, value} = event.target;
+    this.setState({ [name]: value});
+}
+////////////////////////////////////////////////////////////////////////////
 
     render() {
         //  const DonationForm = ({ donation, logDonation }) => {
@@ -264,6 +288,8 @@ class Donate extends Component {
                                                     name="zip"
                                                     value={values.zip}
                                                     onChange={handleChange}
+                                                    // value = {this.state.donation}
+                                                    // onChange = {this.handleInputChange}
                                                     onBlur={handleBlur}
                                                     isValid={touched.zip && !errors.zip}
                                                     isInvalid={!!errors.zip}
@@ -279,7 +305,7 @@ class Donate extends Component {
                                             <Form.Check type="checkbox" disabled label="Populate billing information from profile" />
                                         </Form.Group>
 
-                                        <Button type="submit">Proceed</Button>
+                                        <Button type="submit" data-zip={values.zip} data-fullname={values.fullName} data-charityname={values.charityName} onClick={this.addDonation}>Proceed</Button>
                                     </Form>
                                 )}
                         </Formik>

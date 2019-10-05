@@ -2,6 +2,7 @@
 import React, {Component} from "react";
 import { Container } from "../components/Grid";
 import API from "../utils/API";
+import "../../src/components/Account/style.css";
 
 class Account extends Component {
 
@@ -39,10 +40,12 @@ class Account extends Component {
     render() {
         return (
             <Container>
+                <div className="text-center">
                 <h1 value= {this.state.username} onChange={this.handleInputChange}>{this.state.username}</h1>
                 <h3 value={this.state.amountDonated} onChange={this.handleInputChange}>Amount Donated: $ {this.state.amountDonated}</h3>
-                <div><h1>{this.state.favoriteCharities.map((item, index) => (<span className="test" key={index}>{item} </span>))}</h1></div>
+                <div><h1>{this.state.favoriteCharities.map((item, index) => (<span className="test" key={index}>|{item} | </span>))}</h1></div>
                 <button onClick={this.logout}>Logout</button>
+                </div>
             </Container>
         )
     }
