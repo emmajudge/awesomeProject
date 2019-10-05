@@ -4,6 +4,7 @@ import Header from "../components/Navbar/index";
 import { Jumbotron, Card } from "react-bootstrap";
 import ImageSlides from "../components/Carousel/index";
 import "../components/Charity/style.css"
+import API from "../utils/API";
 
 
 class Charity extends Component {
@@ -21,6 +22,12 @@ class Charity extends Component {
         .then(items =>this.setState({charities: items})); 
     }
 
+    likeCharity = event => {
+        event.preventDefault();
+        // console.log(event.target.value);
+        API.addFavorite({name: event.target.value}).then(response => console.log(response.data));
+    }
+
     render() {
         return (
             // map throug the data of charities and for each oneo:
@@ -35,8 +42,11 @@ class Charity extends Component {
                 {item.link}
                 <br></br>
                 {item.donation}
-                <button class="donateNow">Like
+                {/* <button class="donateNow">Like
                     <a href="/donate/"></a>
+                </button> */}
+                <button className="donateNow" id={item._id} value={item.name} onClick={this.likeCharity}>Like
+                    {/* <a href="/donate/"></a> */}
                 </button>
 
             </Card>

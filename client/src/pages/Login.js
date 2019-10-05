@@ -16,6 +16,7 @@ class Login extends Component {
         API.createLogin({username: this.state.usernameRender, password: this.state.passwordRender})
         .then(response => alert(response.data));
         // window.location.href("/");
+        window.location.assign("/");
         
     }
     //Save For Create Page
@@ -64,6 +65,7 @@ class Login extends Component {
                     {/* <FormBtn
                         onClick = {this.checkLogin}
                     >Sign Up</FormBtn> */}
+                    <a href="/create">Sign Up</a>
                 </form>
                 {/* <button className="amount" onClick={this.logUser}>Amount</button> */}
                 {/* <button className="amount" onClick={this.getAmount}>Amount</button> */}

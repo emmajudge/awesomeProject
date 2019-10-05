@@ -18,8 +18,10 @@ class Account extends Component {
         API.viewAccount()
         .then(response => this.setState({username: response.data.username, amountDonated: response.data.amountDonated, favoriteCharities: response.data.favoriteCharities}))
     }
-    refresh = event => {
-        window.location.reload();
+    logout = event => {
+        event.preventDefault();
+        // window.location.reload();
+        API.logoutUser({username: this.state.username}).then(window.location.assign("/"));
     }
     handleInputChange = event => {
         const {name, value } = event.rarget;
@@ -32,7 +34,7 @@ class Account extends Component {
                 <h3 value={this.state.amountDonated} onChange={this.handleInputChange}>Amount Donated: $ {this.state.amountDonated}</h3>
                 <div><h1>{this.state.favoriteCharities.map((item, index) => (<span className="test" key={index}>{item} </span>))}</h1></div>
                 {/* <h3 onChange={this.handleInputChange}>{this.state.favoriteCharities[0]}</h3> */}
-                <button onClick={this.refresh}>Refresh</button>
+                <button onClick={this.logout}>Logout</button>
             </Container>
         )
     }

@@ -14,7 +14,7 @@ module.exports = {
             if (error) throw error;
 
             //If A Password Is Found, It Means That Someone Is Logged in
-            if(found.password != null){
+            if(found.password){
 
                 //If A Username & Password Is Found, Compares The Password
                 bcryptjs.compare(request.body.password, found.password, function(error, check)
@@ -35,15 +35,16 @@ module.exports = {
 
     //Function To Create A New User
     createLogin: function (request, response) {
-        
+        console.log("Creating...");
+        console.log(request.body);
         //Setting The New Variables
         var newFirstName = request.body.firstName;
         // console.log("Creating User");
         // var newFirstName = "Alex";
         var newUsername = request.body.username;
-        if (request.body.password1 != request.body.password2)
-            response.send("Passwords Are Not The Same");
-        var newPassword = request.body.password1;
+        // if (request.body.password1 != request.body.password2)
+        //     response.send("Passwords Are Not The Same");
+        var newPassword = request.body.password;
 
         //Hashes The Password Before Putting It In The Database
         bcryptjs.genSalt(10, function(error, salt)
@@ -64,7 +65,7 @@ module.exports = {
     getUser: function (request, response) {
 
         //Searches For A User That's Logged In
-        db.Login.findOne({loggedIn: 1}, function (error, found){
+        db.Login.findOne({loggedIn: true}, function (error, found){
             
             //If No One Is Logged In, Sends Them To The Login Page
             if (error) 
@@ -104,5 +105,9 @@ module.exports = {
     //     .findOne({loggedIn: 1})
     //     // .then(dbLogin => response.json({username: "Steelflex"}))
     //     , function (error, found) {console.log("New" + found)}
+    },
+
+    addFavorite: function(request, response) {
+        db.Login.findOneAndUpdate({loggedIn: true}, {$push: {favoriteCharities: request.body.name}}).then(Login => response.json(Login));
     }
 }

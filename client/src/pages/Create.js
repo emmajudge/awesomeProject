@@ -8,8 +8,8 @@ class Create extends Component {
     state = {
         username: "",
         firstName: "",
-        password1: "",
-        password2: ""
+        password: ""
+        // password2: ""
     }
 
     // createLogin = event => {
@@ -22,8 +22,9 @@ class Create extends Component {
     // Save For Create Page
     checkLogin = event => {
         event.preventDefault();
-        console.log("Check Login Event)");
-        API.checkLogin({username: this.state.username, firstName: this.state.firstName, password1: this.state.password1, password2: this.state.password2});
+        // console.log("Check Login Event)");
+        // API.checkLogin({username: this.state.username, firstName: this.state.firstName, password1: this.state.password1, password2: this.state.password2});
+        API.checkLogin({username: this.state.username, firstName: this.state.firstName, password: this.state.password});
         window.location.assign("/login");
     }
     // getAmount = event => {
@@ -34,6 +35,10 @@ class Create extends Component {
     //     event.preventDefault();
     //     API.logoutUser({username: this.state.usernameRender});
     // }
+    test = event => {
+        event.preventDefault();
+        console.log("test");
+    }
     handleInputChange = event => {
         const {name, value} = event.target;
         this.setState({ [name]: value   });
@@ -59,25 +64,27 @@ class Create extends Component {
                         placeholder = "First Name"
                     />
                     <Input
-                        value = {this.state.password1}
+                        value = {this.state.password}
                         onChange = {this.handleInputChange}
-                        name = "password1"
+                        name = "password"
                         type = "password"
                         placeholder = "Enter Password"
                     />
-                    <Input
+                    {/* <Input
                         value = {this.state.password2}
                         onChange = {this.handleInputChange}
                         name = "password2"
                         type = "password"
                         placeholder = "Verify Password"
-                    />
+                    /> */}
                     {/* <FormBtn
                         onClick = {this.createLogin}
                     >Login</FormBtn> */}
                     <FormBtn
                         onClick = {this.checkLogin}
+                        // onClick = {this.test}
                     >Sign Up</FormBtn>
+                    <button onClick = {this.test}>Test</button>
                 </form>
                 {/* <button className="amount" onClick={this.logUser}>Amount</button> */}
                 {/* <button className="amount" onClick={this.getAmount}>Amount</button> */}

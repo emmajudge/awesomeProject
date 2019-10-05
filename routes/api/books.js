@@ -10,8 +10,10 @@ router.route("/create")
   .post(loginController.checkLogin);
 
 router.route("/:id")
-  .get(loginController.getUser)
+  .get(loginController.getUser);
   
+router.route("/add")
+  .put(loginController.addFavorite);
 // Matches with "/api/books"
 router.route("/")
   .get(booksController.findAll)
