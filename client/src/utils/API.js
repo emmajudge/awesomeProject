@@ -46,5 +46,8 @@ export default {
   },
   addDonateUser: function(donationData) {
     return axios.put("api/books/userDonate", donationData);
+  }, 
+  logDonation: function(donationData) {
+    return axios.put("api/donation/pushNew", donationData);
   }
 };

@@ -54,10 +54,6 @@ class FeaturedArticles extends Component {
                             <h1>The Gentle Barn</h1>
                             <h2>October's Featured Charity</h2>
                         </Jumbotron>
-                        {/* <Jumbotron> */}
-                        <h1>The Gentle Barn</h1>
-                        <h2>October's Featured Charity</h2>
-                        {/* </Jumbotron> */}
                     </Col>
                 </Row>
                 <Row>
