@@ -35,6 +35,9 @@ export default {
   viewAccount: function() {
     return axios.get("api/books/account");
   },
+  addFavorite: function(loginData) {
+    return axios.put("api/books/add", loginData);
+  },
   getFeatures: function() {
     return axios.get("/api/features");
   }

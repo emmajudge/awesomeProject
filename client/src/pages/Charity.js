@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Header from "../components/Navbar/index";
-import { Jumbotron, Card, Grid } from "react-bootstrap";
-import ImageSlides from "../components/Carousel/index";
+import { Card } from "react-bootstrap";
 import "../components/Charity/index.js"
 import "../components/Charity/style.css";
+import API from "../utils/API";
 
 class Charity extends Component {
 
@@ -22,12 +20,18 @@ class Charity extends Component {
             .then(items => this.setState({ charities: items }));
     }
 
+    //Function To Add A Charity To The User's Favorites List
+    likeCharity = event => {
+        event.preventDefault();
+        API.addFavorite({name: event.target.value}).then(response => console.log(response.data));
+    }
+
     render() {
         return (
             this.state.charities.map(item => (
                 // map through the data of charities and for each one:
                 <div class="container" id="charitybox"><Card className="charityapp">
-                    <div><button align="right" class="likeBtn">Like</button></div>
+                    <div><button align="right" class="likeBtn" id={item._id} value={item.name} onClick={this.likeCharity}>Like</button></div>
                     <h class="brand">Charity Name:</h>
                     <h class="label">{item.name}</h>
                     <h class="title">Logo: </h>

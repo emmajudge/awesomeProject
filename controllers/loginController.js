@@ -14,7 +14,7 @@ module.exports = {
             if (error) throw error;
 
             //If A Password Is Found, It Means That Someone Is Logged in
-            if(found.password != null){
+            if(found.password){
 
                 //If A Username & Password Is Found, Compares The Password
                 bcryptjs.compare(request.body.password, found.password, function(error, check)
@@ -23,10 +23,10 @@ module.exports = {
                     if (check)
                     {
                         db.Login.findOneAndUpdate({username: request.body.username}, {$set: {loggedIn: true}}).then(Login => response.json(Login));
-                        response.send("Logging In...");
+                        response.send("Success: Logging In...");
                     }
                     else
-                        response.send("Incorrect Password");
+                        response.send("Incorrect Login Infomation");
                 })
             }
         })
@@ -35,15 +35,12 @@ module.exports = {
 
     //Function To Create A New User
     createLogin: function (request, response) {
+        console.log("Creating...");
         
         //Setting The New Variables
         var newFirstName = request.body.firstName;
-        // console.log("Creating User");
-        // var newFirstName = "Alex";
         var newUsername = request.body.username;
-        if (request.body.password1 != request.body.password2)
-            response.send("Passwords Are Not The Same");
-        var newPassword = request.body.password1;
+        var newPassword = request.body.password;
 
         //Hashes The Password Before Putting It In The Database
         bcryptjs.genSalt(10, function(error, salt)
@@ -53,8 +50,7 @@ module.exports = {
             {
                 //Adds The New User To The Database
                 db.Login.create({username: newUsername, password: hash, firstName: newFirstName, amountDonated: 0, favoriteCharites: [], loggedIn: false})
-                .then(response.send("Created"));
-                
+                .then(response.send("Created")); 
             })
         })
     },
@@ -64,7 +60,7 @@ module.exports = {
     getUser: function (request, response) {
 
         //Searches For A User That's Logged In
-        db.Login.findOne({loggedIn: 1}, function (error, found){
+        db.Login.findOne({loggedIn: true}, function (error, found){
             
             //If No One Is Logged In, Sends Them To The Login Page
             if (error) 
@@ -72,18 +68,6 @@ module.exports = {
             else
                 response.send(found);
         })
-
-        //For Getting The Total
-        ////////////////////////////////////////////////////////////////////
-        // let total = 0;
-        // db.Login.find({}, function(error, docs)
-        // {
-        //     for (let i = 0; i < docs.length; i++)
-        //     {
-        //         total += docs[i].amountDonated;
-        //     }
-        //     console.log(total);
-        // })
     },
     //End Of getAmount Function
 
@@ -94,15 +78,9 @@ module.exports = {
     },
     //End Of logoutUser Function
 
-    viewAccount: function(request, response) {
-        // console.log(request);
-    //     db.Login.findOne({loggedIn: 1}, function(error, found){
-    //         if (error) throw error;
-    //         // console.log(found.username)
-    //         }).then(Login => found.json(Login));
-    // db.Login
-    //     .findOne({loggedIn: 1})
-    //     // .then(dbLogin => response.json({username: "Steelflex"}))
-    //     , function (error, found) {console.log("New" + found)}
+    viewAccount: function(request, response) {},
+
+    addFavorite: function(request, response) {
+        db.Login.findOneAndUpdate({loggedIn: true}, {$push: {favoriteCharities: request.body.name}}).then(Login => response.json(Login));
     }
 }
