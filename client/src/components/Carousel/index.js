@@ -1,7 +1,6 @@
 import React from "react";
 import "./style.css";
 import { Carousel, ButtonToolbar, Button } from "react-bootstrap";
-// import { Link } from 'react-router-dom';
 
 function ImageSlides() {
   return (

@@ -28,23 +28,6 @@ class FeaturedArticles extends Component {
             .catch(err => console.log(err));
     };
 
-    //     <Col size="sm-12">
-    //     <h1>Articles and Blog Posts from The Gentle Barn</h1>
-    //     {this.state.features.length ? (
-    //         <List>
-    //             {this.state.features.map(article => (
-    //                 <ListItem key={article._id}>
-    //                     <strong>{article.title}</strong>
-    //                     {article.image} + {article.description}
-    //                     <Link to={article.link}>Read more...</Link>
-    //                 </ListItem>
-    //             ))}
-    //         </List>
-    //     ) : (
-    //             <h3>No Results to Display</h3>
-    //         )}
-    // </Col>
-
     render() {
         return (
             <Container fluid>

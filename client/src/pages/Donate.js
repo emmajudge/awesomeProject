@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import ModalHeader from "react-bootstrap/ModalHeader";
-//import Modal from "react-bootstrap/Modal";
-//import Modal from "react-bootstrap/Modal";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -11,36 +9,6 @@ import Button from "react-bootstrap/Button";
 import API from "../utils/API";
 import { Formik, Field } from "formik";
 import * as yup from "yup";
-
-// import API from "../utils/API";
-// import { Link } from "react-router-dom";
-
-// let yup = require('yup');
-
-// const creditCardSchema = yup.object({
-//     ccn1: yup
-//         .array()
-//         .min(4)
-//         .of(yup.number().min(0)),
-//     ccn2: yup
-//         .array()
-//         .min(4)
-//         .of(yup.number().min(0)),
-//     ccn3: yup
-//         .array()
-//         .min(4)
-//         .of(yup.number().min(0)),
-//     ccn4: yup
-//         .array()
-//         .min(4)
-//         .of(yup.number().min(0))
-// });
-// await creditCardSchema.isValid({
-//     ccn1: [2, 3, 5, 0],
-//     ccn2: [2, 3, 5, 0],
-//     ccn3: [2, 3, 5, 0],
-//     ccn4: [2, 3, 5, 0]
-// }); 
 
 const paymentSchema = yup.object().shape({
     charityName: yup.string()
@@ -85,27 +53,14 @@ const paymentSchema = yup.object().shape({
 
 class Donate extends Component {
     state = {
-        // userID: "",
-        // donations: [{
-        //     charity: "",
-        //     amount: 0
-        // }],
-        // charity: "",
-        // amount: 0,
-        // cardNumber: 0
         username: "",
         name: "",
         donation: 0
     };
 
-    //New Code
-////////////////////////////////////////////////////////////////////////////
 addDonation = event => {
     event.preventDefault();
     console.log(event.target);
-    // console.log(event.target.dataset.charityname);
-    // console.log(event.target.dataset.fullname);
-    // console.log(event.target.dataset.zip);
     API.addDonation({name: event.target.dataset.charityname, username: event.target.dataset.fullname, donation: event.target.dataset.donationamount})
     .then(API.addDonateUser({amountDonated: event.target.dataset.donationamount}))
     .then(alert("Thank you for donating!"))
@@ -119,13 +74,11 @@ handleInputChange = event => {
 ////////////////////////////////////////////////////////////////////////////
 
     render() {
-        //   const DonationForm = ({ donation, pushFormVals }) => {
 
         return (
             <Container fluid>
                 <Row>
                     <Col md="8">
-                        {/* <Dialog onClose={onClose}></Dialog> */}
                         <h1>Donate Now!</h1>
                         <Formik
                             validationSchema={paymentSchema}
@@ -143,23 +96,6 @@ handleInputChange = event => {
                                 zip: ""
                             }}
                             onSubmit={console.log}
-                        // onSubmit={(values, actions => {
-                        //     API.logDonation(donation, values).then(
-                        //         donationLogged => {
-                        //             actions.setSubmitting(false);
-                        //             pushFormVals(donationLogged);
-                        //             // onClose();
-                        //         },
-                        //         error => {
-                        //             actions.setSubmitting(false);
-                        //             actions.setErrors(console.log(error));
-                        //             actions.setStatus({ msg: "something went wrong" });
-                        //         }
-                        //     )
-                        // })}
-
-                        // https://dev.to/finallynero/comment/7fne
-                        // https://jaredpalmer.com/formik/docs/guides/form-submission#submission 
                         >
                             {({
                                 handleSubmit,

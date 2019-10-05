@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import { Jumbotron, Container } from "react-bootstrap";
 import prettyMoney from "pretty-money";
 import Counter from "react-animated-number";
@@ -41,8 +40,6 @@ class UpdateFunds extends Component {
     super();
 
     this.state = {
-      // smallValue: 10,
-      // bigValue: 1000,
       updates: 0,
       newDonation: 50,
       totalDonations: 1000
@@ -60,7 +57,6 @@ class UpdateFunds extends Component {
     this.setState({
       newDonation: getRandomInt(5, 1000),
       totalDonations: totalDonations+newDonation,
-      // bigValue: getRandomInt(100, 5000),
       updates: updates + 1
     });
   }
