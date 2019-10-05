@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Card } from "react-bootstrap";
 import "../components/Charity/index.js"
 import "../components/Charity/style.css";
+import API from "../utils/API";
 
 class Charity extends Component {
 
