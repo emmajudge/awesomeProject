@@ -1,26 +1,54 @@
 .charityapp {
-  width: 450px; 
-  height: auto; 
+  width: 350px; 
+  height: 755px; 
   background: lightblue; 
-  text-align: center; 
-  border-radius: 30px; 
   border-style: solid; 
+  border-width: 5px; 
   border-color: black; 
-  top: 50%; 
-  left: 50%; 
-  padding: 0; 
+  margin: 10px; 
+  padding: 5px; 
+  float: left; 
+  text-align: center; 
 }
 
-.donateNow {
+.likeBtn {
   background-color: darkcyan; 
-  width: 200px; 
+  width: 100px; 
   text-align: center; 
   font-size: 30px; 
   color: white; 
   border-radius: 12px; 
   border: 2px solid darkblue;
+  float: right; 
 }
 
-.donateNow:hover {
+.likeBtn:hover {
   background-color: black; 
 } 
+
+.brand {
+  font-weight: 800; 
+  color: navy; 
+  font-size: 22px; 
+}
+
+.label {
+  color: green; 
+  font-size: 30px; 
+  font-weight: 900; 
+}
+
+.title {
+ font-weight: bolder; 
+ color: navy; 
+ size: 20px; 
+}
+
+.info { 
+  font-weight: 350; 
+  color: black; 
+}
+
+.logos {
+  height: 180px; 
+}
