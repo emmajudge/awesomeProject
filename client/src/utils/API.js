@@ -37,5 +37,8 @@ export default {
   },
   getFeatures: function() {
     return axios.get("/api/features");
+  }, 
+  logDonation: function(donationData) {
+    return axios.put("api/donation/pushNew", donationData);
   }
 };
