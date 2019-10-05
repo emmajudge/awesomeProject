@@ -11,7 +11,6 @@ import Button from "react-bootstrap/Button";
 import API from "../utils/API";
 import { Formik, Field } from "formik";
 import * as yup from "yup";
-import API from "../utils/API";
 
 // import API from "../utils/API";
 // import { Link } from "react-router-dom";
@@ -107,8 +106,8 @@ addDonation = event => {
     // console.log(event.target.dataset.charityname);
     // console.log(event.target.dataset.fullname);
     // console.log(event.target.dataset.zip);
-    API.addDonation({name: event.target.dataset.charityname, username: event.target.dataset.fullname, donation: event.target.dataset.zip})
-    .then(API.addDonateUser({amountDonated: event.target.dataset.zip}))
+    API.addDonation({name: event.target.dataset.charityname, username: event.target.dataset.fullname, donation: event.target.dataset.donationamount})
+    .then(API.addDonateUser({amountDonated: event.target.dataset.donationamount}))
     .then(alert("Thank you for donating!"))
     .then(window.location.reload());
 }
@@ -378,7 +377,7 @@ handleInputChange = event => {
                                             <Form.Check type="checkbox" disabled label="Populate billing information from profile" />
                                         </Form.Group>
 
-                                        <Button type="submit" data-zip={values.zip} data-fullname={values.fullName} data-charityname={values.charityName} onClick={this.addDonation}>Proceed</Button>
+                                        <Button type="submit" data-donationamount={values.donationAmount} data-fullname={values.fullName} data-charityname={values.charityName} onClick={this.addDonation}>Proceed</Button>
                                     </Form>
                                 )}
                         </Formik>

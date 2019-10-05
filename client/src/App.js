@@ -10,7 +10,7 @@ import Account from "./pages/Account";
 import Login from "./pages/Login";
 import ImageSlides from "./components/Carousel";
 import UpdateFundsJumbotron from "./components/Counter";
-
+import BottomNav from "./components/Footer";
 
 function App() {
   return (
@@ -27,6 +27,7 @@ function App() {
         <ImageSlides />
         <UpdateFundsJumbotron />
         <Charity/>
+        <BottomNav />
       </div>
     </Router>
   );
