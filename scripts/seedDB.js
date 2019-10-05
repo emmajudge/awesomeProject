@@ -87,15 +87,7 @@ const donationSeed = [
       "Their mission is to advance cures and means of prevention, for pediatric catastrophic diseases through research and treatment. Consistent with the vision of our founder Danny Thomas, no child is denied treatment based on race, religion or a family’s ability to pay.",
     link: "https://www.stjude.org/",
     donation: 0
-  },
-  {
-    name: "Habitat for Humanity International",
-    image: "cecilia insert URL here!",
-    description:
-      "A nonprofit organization that helps families build and improve places to call home. We believe affordable housing plays a critical role in strong and stable communities.",
-    link: "https://www.habitat.org/",
-    donation: 0
-  },
+  }, 
   {
     name: "Nature Conservancy",
     image: "https://www.greatlakesnow.org/wp-content/uploads/2017/01/logo-nature.png”",
@@ -143,15 +135,14 @@ const donationSeed = [
       "Our mission is to help people fight kidney disease and live healthier lives.",
     link: "http://www.kidneyfund.org/",
     donation: 0
-  },
+  }, 
   {
-    name: "World Wildlife Fund",
-    image: "https://www.pinclipart.com/maxpin/xoTobJ/",
-    description:
-      "Our mission is to conserve nature and reduce the most pressing threats to the diversity of life on Earth.",
-    link: "https://www.worldwildlife.org/",
+    name: "World Wildlife Fund", 
+    image: "https://www.seekpng.com/png/detail/177-1778632_wwf-world-wildlife-fund.png", 
+    description: "Our mission is to conserve nature and reduce the most pressing threats to the diversity of life on Earth.",
+    link: "https://www.worldwildlife.org", 
     donation: 0
-  },
+  }
 ]
 
 db.Donation

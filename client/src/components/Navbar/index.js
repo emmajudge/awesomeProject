@@ -15,7 +15,7 @@ function Header() {
           <Nav.Link href="/donate">Donate<i class="fas fa-donate"></i></Nav.Link>
           <NavDropdown title="My Account" id="basic-nav-dropdown">
             <NavDropdown.Item href="/mydashboard">My Dashboard</NavDropdown.Item>
-            <NavDropdown.Item href="/logout">Log Out</NavDropdown.Item>
+            <NavDropdown.Item href="/login">Log In</NavDropdown.Item>
           </NavDropdown>
         </Nav>
       </Navbar.Collapse>

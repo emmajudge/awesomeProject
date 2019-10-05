@@ -17,18 +17,9 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // Connect to the Mongo DB
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/userCollection");
-// let databaseUrl = "users2";
-// let collections = ["userData"];
-// var userDB = mongojs(databaseUrl, collections);
-// userDB.on("error", function(error)
-// {
-//   console.log("Database Error: " + error)
-// })
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/awesomeProject");
 
 // "mongodb://test:password1@ds023714.mlab.com:23714/heroku_d20xtg1f"
-// "mongodb://localhost/awesomeProject"
 
 // Start the API server
 app.listen(PORT, function() {
